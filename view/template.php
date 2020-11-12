@@ -20,11 +20,13 @@
     						<ul class="navbar-nav mr-auto">
       							<li class="nav-item active">
         							<a class="nav-link" href="index.php">Accueil
-          							<span class="sr-only">(current)</span>
         							</a>
       							</li>
       							<li class="nav-item">
-        							<a class="nav-link" href="#">Dessins</a>
+        							<a class="nav-link" href="#">Travaux</a>
+      							</li>
+      							<li class="nav-item">
+        							<a class="nav-link" href="#">Forum</a>
       							</li>
       							<li class="nav-item">
         							<a class="nav-link" href="index.php?action=contact">Contact</a>
@@ -37,7 +39,7 @@
 		<div class="container">
 			<div class="row">
      	 		<div class="col">
-         			<div class="jumbotron">
+         			<div class="jumbotron text-center">
 						<h1>Les Tiroirs d'Eleusis</h1>
 						<h2>Illustrations</h2>
 					</div>

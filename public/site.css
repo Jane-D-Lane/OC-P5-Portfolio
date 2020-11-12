@@ -5,3 +5,7 @@ body {
 .jumbotron {
 	background-color: white;
 }
+
+#imageFondu img {
+	border-radius: 400px;
+}
