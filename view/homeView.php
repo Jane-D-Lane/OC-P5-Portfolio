@@ -9,6 +9,14 @@
             <img class="w-50" src="public/images/eleusisHome.jpg">
          </div>
       </div>
+      <div class="col-12 col-lg-6">
+         <h2>Je suis Eleusis, illustratrice et exploratrice de terrains inconnus !</h2>
+         <div id="separateur" class="text-center">
+            <p>.  .  .  .  .</p>
+         </div>
+         <p>Je dessine depuis toujours et ma motivation principale est d'essayer de capturer la réalité qui m'entoure et de la transformer. Je suis attirée par la pop-culture et tout ce qui concerne l'imaginaire, la fantasy, les films, les jeux vidéo, le jeu de rôle...</p>
+         <p>J'ai créé ce site pour partager mon travail et pour rassembler des gens bienveillants pour discuter de plein de choses. Tous les rêveurs sont les bienvenus !</p>
+      </div>
    </div>
 </div>
 <div class="container py-5">
