@@ -23,7 +23,7 @@
         							</a>
       					</li>
       					<li class="nav-item">
-        					<a class="nav-link" href="#">Travaux</a>
+        					<a class="nav-link" href="index.php?action=work">Travaux</a>
       					</li>
       					<li class="nav-item">
         					<a class="nav-link" href="#">Forum</a>

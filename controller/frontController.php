@@ -7,3 +7,7 @@ function homePage() {
 function formPage() {
 	require('view/contactView.php');
 }
+
+function contentPage() {
+	require('view/contentView.php');
+}

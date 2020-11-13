@@ -8,6 +8,8 @@ try {
 			homePage();
 		} elseif($_GET['action'] == 'contact') {
 			formPage();
+		} elseif($_GET['action'] == 'work') {
+			contentPage();
 		}
 	} else {
 		homePage();
