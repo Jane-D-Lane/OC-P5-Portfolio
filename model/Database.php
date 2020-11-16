@@ -1,18 +1,30 @@
 <?php
 
-class Database {
+namespace Eleusis\Portfolio\model;
 
-	const DB_HOST = ''mysql:host=localhost;dbname=portfolioEleusis;charset=utf8'';
-	const DB_USER = 'root';
-	const DB_PASS = 'root';
+use PDO;
+use Exception;
 
-	protected function getConnection() {
+abstract class Database {
+
+ 	private function getConnection() {
 		try {
-			$connection = new PDO(self::DB_HOST, self::DB_USER, self::DB_PASS);
+			$connection = new \PDO(DB_HOST, DB_USER, DB_PASS);
+			$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			return $connection;
-		} 
-		catch(Exception $errorConnection) {
-			die('Erreur : ' .$errorConnection->getMessage());
+		} catch(Exception $errorConnection) {
+			die('Erreur de connection : ' .$errorConnection->getMessage());
+		}
+	}
+
+	protected function createQuery($sql, $parameters = null) {
+		if($parameters) {
+			$result = $this->getConnection()->prepare($sql);
+			$result->execute($parameters);
+			return $result;
+		} else {
+			$result = $this->getConnection()->query($sql);
+			return $result;
 		}
 	}
 }

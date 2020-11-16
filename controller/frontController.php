@@ -8,6 +8,10 @@ function formPage() {
 	require('view/contactView.php');
 }
 
-function contentPage() {
-	require('view/contentView.php');
+function postsPage() {
+	require('view/postsView.php');
+}
+
+function onePostPage() {
+	require('view/postView.php');
 }

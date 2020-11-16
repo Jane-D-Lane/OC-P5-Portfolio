@@ -1,0 +1,5 @@
+{
+	"autoload":{
+		"psr-4":{"Eleusis\\Portfolio\\model\\":"Eleusis/Portfolio/model/"}
+	}
+}
