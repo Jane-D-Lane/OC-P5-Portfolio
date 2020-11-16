@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Eleusis\\Portfolio\\model\\' => array($baseDir . '/Eleusis/Portfolio/model'),
+    'Eleusis\\Portfolio\\src\\' => array($baseDir . '/src'),
+    'Eleusis\\Portfolio\\config\\' => array($baseDir . '/config'),
 );

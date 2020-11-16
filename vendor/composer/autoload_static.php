@@ -9,14 +9,19 @@ class ComposerStaticInit5ace56ca47acd5e57849dfc2accaffe8
     public static $prefixLengthsPsr4 = array (
         'E' => 
         array (
-            'Eleusis\\Portfolio\\model\\' => 24,
+            'Eleusis\\Portfolio\\src\\' => 22,
+            'Eleusis\\Portfolio\\config\\' => 25,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Eleusis\\Portfolio\\model\\' => 
+        'Eleusis\\Portfolio\\src\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/Eleusis/Portfolio/model',
+            0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Eleusis\\Portfolio\\config\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/config',
         ),
     );
 

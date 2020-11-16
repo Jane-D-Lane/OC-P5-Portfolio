@@ -2,7 +2,7 @@
 
 require("vendor/autoload.php");
 
-use Eleusis\Portfolio\model\Post;
+use Eleusis\Portfolio\src\model\Post;
 
 ?>
 
@@ -15,8 +15,6 @@ use Eleusis\Portfolio\model\Post;
 		<div class="col-12 col-md-8 px-5">
 		
 <?php
-$post = new Post();
-$posts = $post->getPosts();
 while($post = $posts->fetch()) {
 ?> 
 
@@ -39,4 +37,4 @@ $posts->closeCursor();
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('view/template.php'); ?>
+<?php require('src/view/template.php'); ?>

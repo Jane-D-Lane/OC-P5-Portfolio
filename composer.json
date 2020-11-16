@@ -1,5 +1,8 @@
 {
 	"autoload":{
-		"psr-4":{"Eleusis\\Portfolio\\model\\":"Eleusis/Portfolio/model/"}
+		"psr-4":{
+			"Eleusis\\Portfolio\\src\\":"src/",
+			"Eleusis\\Portfolio\\config\\":"config/"
+		}
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Eleusis\Portfolio\model;
+namespace Eleusis\Portfolio\src\model;
 
 use PDO;
 use Exception;
@@ -27,4 +27,5 @@ abstract class Database {
 			return $result;
 		}
 	}
+	
 }
