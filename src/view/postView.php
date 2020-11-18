@@ -2,7 +2,7 @@
 
 require("vendor/autoload.php");
 
-use Eleusis\Portfolio\src\model\Post;
+use Eleusis\Portfolio\src\DAO\Post;
 
 ?>
 
@@ -13,24 +13,13 @@ use Eleusis\Portfolio\src\model\Post;
 <div class="container">
 	<div class="row">
 		<div class="col-12 col-md-8 px-5">
-		
-<?php
-while($post = $posts->fetch()) {
-?> 
-
 			<div>
 				<h3>
-					<?= htmlspecialchars($post['title']) ?>
-					<em>le <?= $post['creation_date_fr'] ?></em>
+					<?= htmlspecialchars($post->getTitle()) ?>
+					<em>le <?= $post->getCreationDate() ?></em>
 				</h3> 
-				<p><?= nl2br($post['content']) ?></p>			
+				<p><?= nl2br($post->getContent()) ?></p>			
 			</div>
-
-<?php
-}
-$posts->closeCursor();
-?>
-
 		</div>
 	</div>
 </div>

@@ -4,7 +4,7 @@ namespace Eleusis\Portfolio\config;
 
 use Eleusis\Portfolio\src\controller\FrontController;
 use Eleusis\Portfolio\src\controller\ErrorController;
-use Eleusis\Portfolio\src\model\Post;
+use Eleusis\Portfolio\src\DAO\PostDAO;
 use Exception;
 
 class Routeur {

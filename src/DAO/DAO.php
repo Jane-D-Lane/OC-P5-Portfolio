@@ -1,11 +1,11 @@
 <?php
 
-namespace Eleusis\Portfolio\src\model;
+namespace Eleusis\Portfolio\src\DAO;
 
 use PDO;
 use Exception;
 
-abstract class Database {
+abstract class DAO {
 
  	private function getConnection() {
 		try {

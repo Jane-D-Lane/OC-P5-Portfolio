@@ -2,18 +2,38 @@
 
 namespace Eleusis\Portfolio\src\model;
 
-require("src/model/Database.php");
+class Post {
 
-class Post extends Database {
-	
-	public function getPosts() {
-		$sql = 'SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts ORDER BY id DESC';
-		return $this->createQuery($sql);
+	private $id;
+	private $title;
+	private $content;
+	private $creationDateFr;
+
+	public function getId() {
+		return $this->id;
+	}
+	public function setId($id) {
+		$this->id = $id;
 	}
 
-	public function getPost($postId) {
-		$sql = 'SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts WHERE id = ?';
-		return $this->createQuery($sql, [$postId]);
+	public function getTitle() {
+		return $this->title;
+	}
+	public function setTitle($title) {
+		$this->title = $title;
 	}
 
+	public function getContent() {
+		return $this->content;
+	}
+	public function setContent($content) {
+		$this->content = $content;
+	}
+
+	public function getCreationDate() {
+		return $this->creationDateFr;
+	}
+	public function setCreationDate($creationDateFr) {
+		$this->creationDateFr = $creationDateFr;
+	}
 }
