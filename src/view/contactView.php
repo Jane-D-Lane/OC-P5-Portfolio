@@ -1,6 +1,4 @@
-<?php $title = "Contact"; ?> 
-
-<?php ob_start(); ?>
+<?php $this->title = "Contact"; ?> 
 
 <div class="container">
 	<form class="text-center">
@@ -19,7 +17,3 @@
 		<button type="submit" class="btn btn-info">Envoyer</button>
 	</form>
 </div>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('src/view/template.php'); ?>

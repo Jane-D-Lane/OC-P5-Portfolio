@@ -1,7 +1,5 @@
 <?php $title = "Accueil"; ?>
 
-<?php ob_start(); ?>
-
 <div class="container py-5">
    <div class="row">
       <div class="col-12 col-lg-6">
@@ -53,7 +51,3 @@
    		</div>
    	</div>
 </div>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require('src/view/template.php'); ?>

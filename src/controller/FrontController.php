@@ -2,21 +2,10 @@
 
 namespace Eleusis\Portfolio\src\controller;
 
-use Eleusis\Portfolio\src\DAO\PostDAO;
-use Eleusis\Portfolio\src\model\View;
-
-class FrontController {
-
-	private $postDAO;
-	private $view;
-
-	public function __construct() {
-		$this->postDAO = new PostDAO();
-		$this->view = new View();
-	}
+class FrontController extends Controller{
 
 	public function homePage() {
-		require('src/view/homeView.php');
+		return $this->view->render('homeView');
 	}
 
 	public function postsPage() { 
@@ -26,11 +15,11 @@ class FrontController {
 
 	public function onePostPage() {
 		$post = $this->postDAO->getPost($_GET['id']);
-		require('src/view/postView.php');
+		return $this->view->render('postView', ['post' => $post]);
 	} 
 
 	public function formPage() {
-		require('src/view/contactView.php');
+		return $this->view->render('contactView');
 	}
 
 }

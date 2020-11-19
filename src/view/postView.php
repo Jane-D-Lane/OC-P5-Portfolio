@@ -1,14 +1,10 @@
-<?php
+<?phps
 
-require("vendor/autoload.php");
-
-use Eleusis\Portfolio\src\DAO\Post;
+use Eleusis\Portfolio\src\DAO\PostDAO;
 
 ?>
 
-<?php $title = "Travaux"; ?>
-
-<?php ob_start(); ?>
+<?php $this->title = "Travaux"; ?>
 
 <div class="container">
 	<div class="row">
@@ -24,6 +20,3 @@ use Eleusis\Portfolio\src\DAO\Post;
 	</div>
 </div>
 
-<?php $content = ob_get_clean(); ?>
-
-<?php require('src/view/template.php'); ?>

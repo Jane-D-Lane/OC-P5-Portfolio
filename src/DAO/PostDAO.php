@@ -36,4 +36,10 @@ class PostDAO extends DAO {
 		return $this->buildObject($post);
 	}
 
+	public function addPost($post) {
+		extract($post);
+		$sql = 'INSERT INTO posts (title, content, creationDate) VALUES (?, ?, NOW())';
+		$this->createQuery($sql, [$title, $content]);
+	}
+
 }
