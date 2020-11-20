@@ -13,8 +13,8 @@ class FrontController extends Controller{
 		return $this->view->render('postsView',['posts' => $posts]);
 	}
 
-	public function onePostPage() {
-		$post = $this->postDAO->getPost($_GET['id']);
+	public function onePostPage($postId) {
+		$post = $this->postDAO->getPost($postId);
 		return $this->view->render('postView', ['post' => $post]);
 	} 
 
