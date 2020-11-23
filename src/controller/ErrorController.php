@@ -2,6 +2,7 @@
 
 namespace Eleusis\Portfolio\src\controller;
 
+// Gestion des erreurs 
 class ErrorController {
 
 	public function errorNotFound() {

@@ -2,6 +2,7 @@
 
 namespace Eleusis\Portfolio\config;
 
+// Gestion de la requête et des données GET, POST et SESSION
 class Request {
 
 	private $get;
@@ -9,9 +10,9 @@ class Request {
 	private $session;
 
 	public function __construct() {
-		$this->get = $_GET;
-		$this->post = $_POST;
-		$this->session = $_SESSION;
+		$this->get = new Parameter($_GET);
+		$this->post = new Parameter($_POST);
+		$this->session = new Session($_SESSION);
 	}
 
 	public function getGet() {

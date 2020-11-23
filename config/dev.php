@@ -1,5 +1,7 @@
 <?php
 
+// Données de configuration de la base de données
+
 const HOST = 'localhost';
 const DB_NAME = 'portfolioEleusis';
 const CHARSET = 'utf8';

@@ -2,6 +2,7 @@
 
 namespace Eleusis\Portfolio\src\model;
 
+// Représente un article du blog 
 class Post {
 
 	private $id;

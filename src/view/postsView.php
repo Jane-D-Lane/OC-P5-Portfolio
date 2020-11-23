@@ -5,6 +5,7 @@ use Eleusis\Portfolio\src\DAO\PostDAO;
 ?>
 
 <?php $this->title = "Travaux"; ?>
+<?= $this->session->show('addPostView'); ?>
 
 <div class="container">
 	<div class="row">
