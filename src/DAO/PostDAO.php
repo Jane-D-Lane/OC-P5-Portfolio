@@ -46,4 +46,13 @@ class PostDAO extends DAO {
 		$this->createQuery($sql, [$post->get('title'), $post->get('content')]);
 	}
 
+	// Modification d'un article dans la base de données
+	public function editPost(Parameter $post, $postId) {
+		$sql = 'UPDATE posts SET title=:title, content=:content WHERE id=:postId';
+		$this->createQuery($sql, [
+			'title' => $post->get('title'),
+			'content' => $post->get('content'),
+			'postId' => $postId
+		]);
+	}
 }

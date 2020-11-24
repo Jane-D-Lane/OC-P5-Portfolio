@@ -25,7 +25,6 @@ class Routeur {
 	// Redirection vers la page demandé
 	public function run() {
 		$this->request->getSession()->set('test','value');
-		var_dump($this->request->getSession()->get('test'));
 		if(isset($_GET['action'])) {
 			$action = $this->request->getGet()->get('action');
 		} else {
@@ -45,6 +44,8 @@ class Routeur {
 					}
 				} elseif($action === 'addPost') {
 					$this->backController->addPost($post);
+				} elseif ($action === 'editPost') {
+					$this->backController->editPost($post, $postId);
 				} elseif($action === 'contact') {
 					$this->frontController->formPage();
 				} else {

@@ -12,9 +12,17 @@ class BackController extends Controller {
 		if($post->get('submit')) {
 			$this->postDAO->addPost($post);
 			$this->session->set('addPostView', 'Le nouvel article a bien été ajouté.');
-			header('Location: index.php');
 		}
 		return $this->view->render('addPostView', ['post' => $post]);
+	}
+
+	public function editPost(Parameter $post, $postId) {
+		$post = $this->postDAO->getPost($postId);
+		if($post->get('submit')) {
+			$this->postDAO->editPost($post, $postId);
+			$this->session->set('editPostView', 'L\'article a bien été modifié.');
+		}
+		return $this->view->render('editPostView', ['post' => $post]);
 	}
 	
 }
