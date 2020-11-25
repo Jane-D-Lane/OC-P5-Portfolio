@@ -31,7 +31,7 @@ class Routeur {
 			$action = NULL;
 		}
 		$postId = $this->request->getGet()->get('id');
-		$post = $this->request->getPost();
+		$Post = $this->request->getPost();
 		try {
 			if(isset($action)) {
 				if($action === 'posts') {
@@ -43,9 +43,9 @@ class Routeur {
 						$this->errorController->errorNotFound();
 					}
 				} elseif($action === 'addPost') {
-					$this->backController->addPost($post);
+					$this->backController->addPost($Post);
 				} elseif ($action === 'editPost') {
-					$this->backController->editPost($post, $postId);
+					$this->backController->editPost($Post, $postId);
 				} elseif($action === 'contact') {
 					$this->frontController->formPage();
 				} else {

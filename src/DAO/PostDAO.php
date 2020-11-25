@@ -41,17 +41,17 @@ class PostDAO extends DAO {
 	}
 
 	// Ajout d'un article dans la base de données 
-	public function addPost(Parameter $post) {
+	public function addPost(Parameter $Post) {
 		$sql = 'INSERT INTO posts (title, content, creationDate) VALUES (?, ?, NOW())';
-		$this->createQuery($sql, [$post->get('title'), $post->get('content')]);
+		$this->createQuery($sql, [$Post->get('title'), $Post->get('content')]);
 	}
 
 	// Modification d'un article dans la base de données
-	public function editPost(Parameter $post, $postId) {
+	public function editPost(Parameter $Post, $postId) {
 		$sql = 'UPDATE posts SET title=:title, content=:content WHERE id=:postId';
 		$this->createQuery($sql, [
-			'title' => $post->get('title'),
-			'content' => $post->get('content'),
+			'title' => $Post->get('title'),
+			'content' => $Post->get('content'),
 			'postId' => $postId
 		]);
 	}

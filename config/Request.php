@@ -6,12 +6,12 @@ namespace Eleusis\Portfolio\config;
 class Request {
 
 	private $get;
-	private $post;
+	private $Post;
 	private $session;
 
 	public function __construct() {
 		$this->get = new Parameter($_GET);
-		$this->post = new Parameter($_POST);
+		$this->Post = new Parameter($_POST);
 		$this->session = new Session($_SESSION);
 	}
 
@@ -20,7 +20,7 @@ class Request {
 	}
 
 	public function getPost() {
-		return $this->post;
+		return $this->Post;
 	}
 
 	public function getSession() {
