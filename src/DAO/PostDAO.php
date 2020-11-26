@@ -55,4 +55,10 @@ class PostDAO extends DAO {
 			'postId' => $postId
 		]);
 	}
+
+	// Suppression d'un article dans la base de données
+	public function deletePost($postId) {
+		$sql = 'DELETE FROM posts WHERE id = ?';
+		$this->createQuery($sql, [$postId]);
+	}
 }

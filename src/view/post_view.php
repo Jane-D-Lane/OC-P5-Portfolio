@@ -14,7 +14,7 @@
 			<br>
 			<div>
 				<a href="index.php?action=editPost&amp;id=<?= $post->getId(); ?>">Modifier</a>
-				<a href="index.php?action=deletePost&amp;id=<? $post->getId(); ?>">Supprimer</a>
+				<a href="index.php?action=deletePost&amp;id=<?= $post->getId(); ?>">Supprimer</a>
 			</div>
 		</div>
 	</div>

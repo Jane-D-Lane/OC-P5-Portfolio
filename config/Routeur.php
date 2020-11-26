@@ -44,8 +44,10 @@ class Routeur {
 					}
 				} elseif($action === 'addPost') {
 					$this->backController->addPost($Post);
-				} elseif ($action === 'editPost') {
+				} elseif($action === 'editPost') {
 					$this->backController->editPost($Post, $postId);
+				} elseif($action === 'deletePost') {
+					$this->backController->deletePost($postId);
 				} elseif($action === 'contact') {
 					$this->frontController->formPage();
 				} else {

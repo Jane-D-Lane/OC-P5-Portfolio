@@ -11,18 +11,27 @@ class BackController extends Controller {
 	public function addPost(Parameter $Post) {
 		if($Post->get('submit')) {
 			$this->postDAO->addPost($Post);
-			$this->session->set('addPostView', 'Le nouvel article a bien été ajouté.');
+			$this->session->set('add_post_view', 'Le nouvel article a bien été ajouté.');
+			$posts = $this->postDAO->getPosts(); 
+			return $this->view->render('posts_view', ['posts' => $posts]);
 		}
-		return $this->view->render('addPostView', ['Post' => $Post]);
+		return $this->view->render('add_post_view', ['Post' => $Post]);
 	}
 
 	public function editPost(Parameter $Post, $postId) {
 		$post = $this->postDAO->getPost($postId);
 		if($Post->get('submit')) {
 			$this->postDAO->editPost($Post, $postId);
-			$this->session->set('editPostView', 'L\'article a bien été modifié.');
+			$this->session->set('edit_post_view', 'L\'article a bien été modifié.');
 		}
-		return $this->view->render('editPostView', ['post' => $post]);
+		return $this->view->render('edit_post_view', ['post' => $post]);
+	}
+
+	public function deletePost($postId) {
+		$this->postDAO->deletePost($postId);
+		$this->session->set('delete_post', 'L\'article a bien été supprimé.');
+		$posts = $this->postDAO->getPosts();
+		return $this->view->render('posts_view', ['posts' => $posts]);
 	}
 	
 }
