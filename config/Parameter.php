@@ -22,4 +22,8 @@ class Parameter {
 	public function set($name, $value) {
 		$this->parameter[$name] = $value;
 	}
+
+	public function all() {
+		return $this->parameter;
+	}
 }

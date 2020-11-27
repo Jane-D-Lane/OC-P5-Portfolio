@@ -31,7 +31,7 @@ class Routeur {
 			$action = NULL;
 		}
 		$postId = $this->request->getGet()->get('id');
-		$Post = $this->request->getPost();
+		$postUrl = $this->request->getPost();
 		try {
 			if(isset($action)) {
 				if($action === 'posts') {
@@ -43,9 +43,9 @@ class Routeur {
 						$this->errorController->errorNotFound();
 					}
 				} elseif($action === 'addPost') {
-					$this->backController->addPost($Post);
+					$this->backController->addPost($postUrl);
 				} elseif($action === 'editPost') {
-					$this->backController->editPost($Post, $postId);
+					$this->backController->editPost($postUrl, $postId);
 				} elseif($action === 'deletePost') {
 					$this->backController->deletePost($postId);
 				} elseif($action === 'contact') {
