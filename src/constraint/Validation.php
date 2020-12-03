@@ -10,6 +10,10 @@ class Validation {
 			$postValidation = new PostValidation();
 			$errors = $postValidation->check($data);
 			return $errors;
+		} elseif ($name === 'User') {
+			$userValidation = new UserValidation();
+			$errors = $userValidation->check($data);
+			return $errors;
 		}
 	}
 }

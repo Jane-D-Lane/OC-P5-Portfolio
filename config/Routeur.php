@@ -48,6 +48,12 @@ class Routeur {
 					$this->backController->editPost($postUrl, $postId);
 				} elseif($action === 'deletePost') {
 					$this->backController->deletePost($postId);
+				} elseif($action === 'forumHome') {
+					$this->frontController->forumHome();
+				} elseif ($action === 'register') {
+					$this->frontController->register($postUrl);
+				} elseif ($action === 'login') {
+					$this->frontController->login();		
 				} elseif($action === 'contact') {
 					$this->frontController->formPage();
 				} else {

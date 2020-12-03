@@ -14,5 +14,5 @@ $submit = $action ==='addPost' ? 'Envoyer' : 'Mettre à jour';
 	<label for="content">Contenu</label><br>
 	<textarea rows="10" cols="100" id="content" name="content"><?= $content ?></textarea><br>
 	<?= isset($errors['content']) ? $errors['content'] : ''; ?>
-	<input type="submit" value="<?= $submit ?>" name="submit" id="submit">
+	<input type="submit" class="btn btn-info" value="<?= $submit ?>" name="submit" id="submit">
 </form>

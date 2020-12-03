@@ -23,10 +23,10 @@
         							</a>
       					</li>
       					<li class="nav-item">
-        					<a class="nav-link" href="index.php?action=posts">Travaux</a>
+        					<a class="nav-link" href="index.php?action=posts">Articles</a>
       					</li>
       					<li class="nav-item">
-        					<a class="nav-link" href="#">Forum</a>
+        					<a class="nav-link" href="index.php?action=forumHome">Forum</a>
       					</li>
       					<li class="nav-item">
         					<a class="nav-link" href="index.php?action=contact">Contact</a>
