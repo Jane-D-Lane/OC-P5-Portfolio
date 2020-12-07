@@ -10,7 +10,7 @@
 			<?= isset($errors['pseudo']) ? $errors['pseudo']: ''; ?>
 			<div class="form-group">
 				<label for="password">Mot de passe</label><br>
-				<input type="text" name="password" id="password">
+				<input type="password" name="password" id="password">
 			</div>
 			<?= isset($errors['password']) ? $errors['password']: ''; ?>
 			<div class="form-group">
@@ -20,5 +20,6 @@
 			<?= isset($errors['email']) ? $errors['email']: ''; ?>		
 			<input type="submit" class="btn btn-info" name="submit" id="submit" value="S'inscrire">
 		</form>
+		<a href="index.php?action=forumHome">Retour au forum</a>
 	</div>
 </div>

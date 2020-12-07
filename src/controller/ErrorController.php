@@ -3,7 +3,7 @@
 namespace Eleusis\Portfolio\src\controller;
 
 // Gestion des erreurs 
-class ErrorController {
+class ErrorController extends Controller {
 
 	public function errorNotFound() {
 		return $this->view->render('error_404');

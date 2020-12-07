@@ -37,6 +37,12 @@ class Session {
 		unset($_SESSION[$name]);
 	}
 
+	// Ouvre une session
+	public function start() {
+		session_start();
+	}
+
+	// Supprime la session ouverte
 	public function stop() {
 		session_destroy();
 	}

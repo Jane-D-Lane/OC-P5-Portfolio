@@ -4,16 +4,32 @@
   <div class="row">
     <div class="col-12">
       <?= $this->session->show('register'); ?>
+      <?= $this->session->show('login'); ?>
+      <?= $this->session->show('logout'); ?>
     </div>
   </div>
+  
   <div class="row">
+    <?php
+    if($this->session->get('pseudo')) {
+    ?>
     <div class="col-12 col-lg-6 d-flex justify-content-start">
       <a href="index.php?action=addTopic"><button type="button" class="btn btn-primary">Nouveau sujet</button></a>
     </div>
     <div class="col-12 col-lg-6 d-flex justify-content-end">
+      <a href="index.php?action=profile"><button type="button" class="btn btn-primary">Profil</button></a>
+      <a href="index.php?action=logout"><button type="button" class="btn btn-primary">Deconnexion</button></a>
+    </div>
+    <?php
+    } else {
+    ?>
+    <div class="col-12 d-flex justify-content-end">
       <a href="index.php?action=register"><button type="button" class="btn btn-primary">Inscription</button></a>
       <a href="index.php?action=login"><button type="button" class="btn btn-primary">Connexion</button></a>
     </div>
+    <?php
+    }
+    ?>
   </div>
   <br>
 	<div class="row">

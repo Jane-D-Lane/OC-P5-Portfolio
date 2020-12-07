@@ -50,6 +50,26 @@ class FrontController extends Controller {
 		return $this->view->render('register_view');
 	}
 
+	// Gère la connexion d'un membre
+	public function login(Parameter $postUrl) {
+		if($postUrl->get('submit')) {
+			$result = $this->userDAO->login($postUrl);
+			if($result && $result['isPasswordValid']) {
+				$this->session->set('login', 'Content de vous revoir');
+				$this->session->set('id', $result['result']['id']);
+				$this->session->set('pseudo', $postUrl->get('pseudo'));
+				$this->session->set('email', $result['result']['email']);
+				header('Location: index.php?action=forumHome');
+			} else {
+				$this->session->set('error_login', 'Le pseudo et/ou le mot de passe sont incorrects.');
+				return $this->view->render('login_view', 
+					['postUrl' => $postUrl
+				]);
+			}
+		}
+		return $this->view->render('login_view');
+	}
+
 	// Affichage de la page de contact 
 	public function formPage() {
 		return $this->view->render('contact_view');

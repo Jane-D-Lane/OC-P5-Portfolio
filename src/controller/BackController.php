@@ -56,5 +56,27 @@ class BackController extends Controller {
 		$posts = $this->postDAO->getPosts();
 		return $this->view->render('posts_view', ['posts' => $posts]);
 	}
-	
+
+	// Afficher la page de profil d'un membre
+	public function profile() {
+		return $this->view->render('profile_view');
+	}
+
+	//Modifier le mot de passe d'un membre
+	public function updatePassword(Parameter $postUrl) {
+		if($postUrl->get('submit')) {
+			$this->userDAO->updatePassword($postUrl, $this->session->get('pseudo'));
+			$this->session->set('update_password', 'Le mot de passe a été mis à jour.');
+			header('Location: index.php?action=profile');
+		}
+		return $this->view->render('updatePassword_view');
+	}
+
+	// Deconnexion de la session ouverte
+	public function logout() {
+		$this->session->stop();
+		$this->session->start();
+		$this->session->set('logout', 'A bientôt !');
+		header('Location: index.php?action=forumHome');
+	}
 }

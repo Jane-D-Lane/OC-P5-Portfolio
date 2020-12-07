@@ -53,7 +53,13 @@ class Routeur {
 				} elseif ($action === 'register') {
 					$this->frontController->register($postUrl);
 				} elseif ($action === 'login') {
-					$this->frontController->login();		
+					$this->frontController->login($postUrl);	
+				} elseif ($action === 'profile') {
+					$this->backController->profile();	
+				} elseif ($action === 'updatePassword') {
+					$this->backController->updatePassword($postUrl);
+				} elseif ($action === 'logout') {
+					$this->backController->logout();
 				} elseif($action === 'contact') {
 					$this->frontController->formPage();
 				} else {
