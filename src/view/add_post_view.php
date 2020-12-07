@@ -9,7 +9,7 @@
 	<div class="row">
 		<div class="col-12 col-md-6">
 			<?php include('post_form.php'); ?>
-			<a href="index.php?action=posts">Retour à l'accueil</a>
+			<a href="index.php?action=administration">Retour à l'accueil</a>
 		</div>
 	</div>
 </div>

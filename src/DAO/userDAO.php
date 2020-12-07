@@ -2,14 +2,37 @@
 
 namespace Eleusis\Portfolio\src\DAO;
 
+use Eleusis\Portfolio\src\model\User;
 use Eleusis\Portfolio\config\Parameter;
 
 class userDAO extends DAO {
 
+	private function buildObject($row) {
+		$user = new User();
+		$user->setId($row['id']);
+		$user->setRole($row['name']);
+		$user->setPseudo($row['pseudo']);
+		$user->setEmail($row['email']);
+		$user->setInscriptionDate($row['inscriptionDate']);
+		return $user;
+	}
+
+	public function getUsers() {
+		$sql = 'SELECT users.id, users.pseudo, users.email, users.inscriptionDate, role.name FROM users INNER JOIN role ON users.role_id = role.id ORDER BY users.id DESC';
+		$result = $this->createQuery($sql);
+		$users = [];
+		foreach ($result as $row) {
+			$userId = $row['id'];
+			$users[$userId] = $this->buildObject($row);
+		}
+		$result->closeCursor();
+		return $users;
+	}
+
 	public function register(Parameter $postUrl) {
 		$this->checkUser($postUrl);
-		$sql = 'INSERT INTO users(pseudo, password, email, inscriptionDate) VALUES (?, ?, ?, NOW())';
-		$this->createQuery($sql, [$postUrl->get('pseudo'), password_hash($postUrl->get('password'), PASSWORD_DEFAULT), $postUrl->get('email')]);
+		$sql = 'INSERT INTO users(role_id, pseudo, password, email, inscriptionDate) VALUES (?, ?, ?, ?, NOW())';
+		$this->createQuery($sql, [2, $postUrl->get('pseudo'), password_hash($postUrl->get('password'), PASSWORD_DEFAULT), $postUrl->get('email')]);
 	}
 
 	public function checkUser(Parameter $postUrl) {
@@ -22,7 +45,7 @@ class userDAO extends DAO {
 	}
 
 	public function login(Parameter $postUrl) {
-		$sql = 'SELECT id, password, email FROM users WHERE pseudo = ?';
+		$sql = 'SELECT users.id, users.role_id, users.password, users.email, role.name FROM users INNER JOIN role ON role.id = users.role_id WHERE pseudo = ?';
 		$data = $this->createQuery($sql, [$postUrl->get('pseudo')]);
 		$result = $data->fetch();
 		$isPasswordValid = password_verify($postUrl->get('password'), $result['password']);
@@ -35,5 +58,10 @@ class userDAO extends DAO {
 	public function updatePassword(Parameter $postUrl, $pseudo) {
 		$sql = 'UPDATE users SET password = ? WHERE pseudo = ?';
 		$this->createQuery($sql, [password_hash($postUrl->get('password'), PASSWORD_DEFAULT), $pseudo]);
+	}
+
+	public function deleteAccount($pseudo) {
+		$sql = 'DELETE FROM users WHERE pseudo = ?';
+		$this->createQuery($sql, [$pseudo]);
 	}
 }

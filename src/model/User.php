@@ -5,6 +5,7 @@ namespace Eleusis\Portfolio\src\model;
 class User {
 
 	private $id;
+	private $role;
 	private $pseudo;
 	private $password;
 	private $email;
@@ -16,6 +17,14 @@ class User {
 
 	public function setId($id) {
 		$this->id = $id;
+	}
+
+	public function getRole() {
+		return $this->role;
+	}
+
+	public function setRole($role) {
+		$this->role = $role;
 	}
 
 	public function getPseudo() {
@@ -31,7 +40,7 @@ class User {
 	}
 
 	public function setPassword($password) {
-		$this->password = $password
+		$this->password = $password;
 	}
 
 	public function getEmail() {

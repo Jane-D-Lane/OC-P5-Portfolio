@@ -57,6 +57,7 @@ class FrontController extends Controller {
 			if($result && $result['isPasswordValid']) {
 				$this->session->set('login', 'Content de vous revoir');
 				$this->session->set('id', $result['result']['id']);
+				$this->session->set('role', $result['result']['name']);
 				$this->session->set('pseudo', $postUrl->get('pseudo'));
 				$this->session->set('email', $result['result']['email']);
 				header('Location: index.php?action=forumHome');

@@ -31,6 +31,11 @@
       					<li class="nav-item">
         					<a class="nav-link" href="index.php?action=contact">Contact</a>
       					</li>
+                <?php if($this->session->get('role') === 'admin'){ ?> 
+                <li class="nav-item">
+                  <a class="nav-link" href="index.php?action=administration">ESPACE ADMIN</a>
+                </li>
+                <?php } ?>
     					</ul>
   					</div>
 					</nav>

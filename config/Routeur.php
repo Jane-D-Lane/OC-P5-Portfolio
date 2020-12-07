@@ -42,6 +42,8 @@ class Routeur {
 					} else {
 						$this->errorController->errorNotFound();
 					}
+				} elseif ($action === 'administration') {
+					$this->backController->administration();
 				} elseif($action === 'addPost') {
 					$this->backController->addPost($postUrl);
 				} elseif($action === 'editPost') {
@@ -60,6 +62,8 @@ class Routeur {
 					$this->backController->updatePassword($postUrl);
 				} elseif ($action === 'logout') {
 					$this->backController->logout();
+				} elseif ($action === 'deleteAccount') {
+				    $this->backController->deleteAccount();
 				} elseif($action === 'contact') {
 					$this->frontController->formPage();
 				} else {
