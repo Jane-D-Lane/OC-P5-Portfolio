@@ -31,6 +31,7 @@ class Routeur {
 			$action = NULL;
 		}
 		$postId = $this->request->getGet()->get('id');
+		$userId = $this->request->getGet()->get('userId');
 		$postUrl = $this->request->getPost();
 		try {
 			if(isset($action)) {
@@ -64,6 +65,8 @@ class Routeur {
 					$this->backController->logout();
 				} elseif ($action === 'deleteAccount') {
 				    $this->backController->deleteAccount();
+				} elseif ($action === 'deleteUser') {
+					$this->backController->deleteUser($userId);
 				} elseif($action === 'contact') {
 					$this->frontController->formPage();
 				} else {

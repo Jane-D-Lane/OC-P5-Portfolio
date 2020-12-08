@@ -5,6 +5,7 @@
 		<div class="col-12 text-center">
 			<?= $this->session->show('delete_post'); ?>
 			<?= $this->session->show('add_post_view'); ?>
+			<?= $this->session->show('delete_user'); ?>
 		</div>
 	</div>
 	<div class="row">
@@ -79,7 +80,19 @@
 						<td><?= htmlspecialchars($user->getRole()); ?></a>
 						<td><?= htmlspecialchars($user->getEmail()); ?></a>
 						<td>Créé le: <?= htmlspecialchars($user->getInscriptionDate()); ?></td>
-						<td>En construction</td>
+						<td>
+							<?php
+							if($user->getRole()!= 'admin') {
+							?>
+							<a href="index.php?action=deleteUser&amp;userId=<?= $user->getId(); ?>">Supprimer</a>
+							<?php
+							} else {
+							?>
+							Suppression impossible
+							<?php
+							}
+							?>
+						</td>
 					</tr>
 				<?php
 				}

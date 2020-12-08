@@ -3,6 +3,7 @@
 <div class="container">
 	<div class="text-center">
 		<?= $this->session->show('error_login'); ?>
+		<?= $this->session->show('need_login'); ?>
 		<form method="post" action="index.php?action=login">
 			<div class="form-group">
 				<label for="pseudo">Pseudo</label><br>
