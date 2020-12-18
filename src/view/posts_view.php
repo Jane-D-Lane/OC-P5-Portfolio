@@ -19,7 +19,10 @@ foreach($posts as $post) {
 					<a href="index.php?action=onePost&amp;id=<?= $post->getId(); ?>"><?= htmlspecialchars($post->getTitle()) ?></a>
 					<em>le <?= $post->getCreationDate() ?></em>
 				</h3> 
-				<p><?= nl2br($post->getContent()) ?></p>			
+				<p><?= nl2br($post->getContent()) ?></p>
+				<div>
+					<img src="public/uploads/<?= $post->getImg() ?>" width="100px">
+				</div>				
 			</div>
 
 <?php

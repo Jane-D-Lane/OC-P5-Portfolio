@@ -8,6 +8,7 @@ class Post {
 	private $id;
 	private $title;
 	private $content;
+	private $img;
 	private $creationDateFr;
 
 	public function getId() {
@@ -29,6 +30,13 @@ class Post {
 	}
 	public function setContent($content) {
 		$this->content = $content;
+	}
+
+	public function getImg() {
+		return $this->img;
+	}
+	public function setImg($img) {
+		$this->img = $img;
 	}
 
 	public function getCreationDate() {

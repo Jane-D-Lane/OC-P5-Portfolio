@@ -9,7 +9,10 @@
 					<?= htmlspecialchars($post->getTitle()) ?>
 					<em>le <?= $post->getCreationDate() ?></em>
 				</h3> 
-				<p><?= nl2br($post->getContent()) ?></p>			
+				<p><?= nl2br($post->getContent()) ?></p>
+				<div>
+					<img src="public/uploads/<?= $post->getImg() ?>" width="400px">
+				</div>			
 			</div>
 			<br>
 			<?php
