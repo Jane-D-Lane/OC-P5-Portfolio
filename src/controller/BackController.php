@@ -29,13 +29,16 @@ class BackController extends Controller {
 	public function administration() {
 		if($this->checkAdmin()) {
 			$posts = $this->postDAO->getPosts();
+			$flagComments = $this->commentDAO->getFlagComments();
 			$users = $this->userDAO->getUsers();
 			$this->view->render('admin_view', [
 				'posts' => $posts,
+				'comments' => $flagComments,
 				'users' => $users
 			]);
 		}
 	}
+
 
 	// Si un formulaire a été soumis, ajout d'un article avec PostDAO 
 	public function addPost(Parameter $postUrl) {
@@ -87,6 +90,21 @@ class BackController extends Controller {
 		if($this->checkAdmin()) {
 			$this->postDAO->deletePost($postId);
 			$this->session->set('delete_post', 'L\'article a bien été supprimé.');
+			header('Location: index.php?action=administration');
+		}
+	}
+
+	// Suppression d'un commentaire avec CommentDAO
+	public function deleteComment($commentId) {
+		$this->commentDAO->deleteComment($commentId);
+		$this->session->set('delete_comment', 'Le commentaire a bien été supprimé.');
+		header('Location: index.php?action=administration');
+	}
+
+	// Retire le flag d'un commentaire
+	public function unflagComment($commentId) {
+		if($this->checkAdmin()) {
+			$this->commentDAO->unflagComment($commentId);
 			header('Location: index.php?action=administration');
 		}
 	}

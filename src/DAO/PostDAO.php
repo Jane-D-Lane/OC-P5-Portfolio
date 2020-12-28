@@ -2,6 +2,7 @@
 
 namespace Eleusis\Portfolio\src\DAO;
 
+use Eleusis\Portfolio\src\model\File;
 use Eleusis\Portfolio\src\model\Post;
 use Eleusis\Portfolio\config\Parameter;
 
@@ -43,12 +44,8 @@ class PostDAO extends DAO {
 
 	// Ajout d'un article dans la base de données 
 	public function addPost(Parameter $postUrl) {
-		$dataFile = pathinfo($_FILES['img']['name']);
-		$extendUpload = $dataFile['extension'];
-		$extendIsValid = array('jpg', 'jpeg', 'gif', 'png');
-		if(in_array($extendUpload, $extendIsValid)) {
-			move_uploaded_file($_FILES['img']['tmp_name'], 'public/uploads/' .basename($_FILES['img']['name']));
-		};
+		$file = new File();
+		$file->getFile();
 
 		$sql = 'INSERT INTO posts (title, content, img, creationDate) VALUES (?, ?, ?, NOW())';
 		$this->createQuery($sql, [$postUrl->get('title'), $postUrl->get('content'), $_FILES['img']['name']]);

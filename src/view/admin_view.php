@@ -6,6 +6,7 @@
 			<?= $this->session->show('delete_post'); ?>
 			<?= $this->session->show('add_post_view'); ?>
 			<?= $this->session->show('delete_user'); ?>
+			<?= $this->session->show('delete_comment'); ?>
 		</div>
 	</div>
 	<div class="row">
@@ -51,6 +52,38 @@
 		<div class="col-12">
 			<h2>Commentaires signalés</h2>
 		</div>
+	</div>
+	<div class="row">
+		<table class="table">
+			<thead>
+    			<tr>
+       				<td scope="col">Id</td>
+        			<td scope="col">Pseudo</td>
+        			<td scope="col">Message</td>
+        			<td scope="col">Date</td>
+        			<td scope="col">Actions</td>
+    			</tr>
+    		</thead>
+    		<tbody>
+			<?php
+			foreach ($comments as $comment)
+			{
+    		?>
+    			<tr>
+        			<td><?= htmlspecialchars($comment->getId()); ?></td>
+        			<td><?= htmlspecialchars($comment->getPseudo()); ?></td>
+        			<td><?= substr(htmlspecialchars($comment->getComment()), 0, 150); ?></td>
+        			<td>Créé le : <?= htmlspecialchars($comment->getCommentDate()); ?></td>
+        			<td>
+            			<a href="index.php?action=unflagComment&commentId=<?= $comment->getId(); ?>">Désignaler le commentaire</a>
+           				<a href="index.php?action=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a>
+        			</td>
+    			</tr>
+    		<?php
+			}
+			?>
+			</tbody>
+    	</table>
 	</div>
 	<div class="row">
 		<div class="col-12">

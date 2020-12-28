@@ -4,28 +4,13 @@ namespace Eleusis\Portfolio\src\model;
 
 class File {
 
-	private $id;
-	private $file_name;
-	private $link;
-
-	public function getId() {
-		return $this->id;
-	}
-	public function setId($id) {
-		$this->id = $id;
+	public function getFile() {
+		$dataFile = pathinfo($_FILES['img']['name']);
+		$extendUpload = $dataFile['extension'];
+		$extendIsValid = array('jpg', 'jpeg', 'gif', 'png');
+		if(in_array($extendUpload, $extendIsValid)) {
+			move_uploaded_file($_FILES['img']['tmp_name'], 'public/uploads/' .basename($_FILES['img']['name']));
+		};
 	}
 
-	public function getFile_name() {
-		return $this->file_name;
-	}
-	public function setFile_name($file_name) {
-		$this->file_name = $file_name;
-	}
-
-	public function getLink() {
-		return $this->link;
-	}
-	public function setLink($link) {
-		$this->link = $link;
-	}
 }

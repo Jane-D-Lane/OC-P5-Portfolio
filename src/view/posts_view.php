@@ -20,9 +20,15 @@ foreach($posts as $post) {
 					<em>le <?= $post->getCreationDate() ?></em>
 				</h3> 
 				<p><?= nl2br($post->getContent()) ?></p>
+				<?php
+				if ($post->getImg()) {
+				?>
 				<div>
 					<img src="public/uploads/<?= $post->getImg() ?>" width="100px">
-				</div>				
+				</div>
+				<?php
+				}
+				?>				
 			</div>
 
 <?php

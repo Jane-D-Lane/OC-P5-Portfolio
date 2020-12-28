@@ -3,6 +3,7 @@
 namespace Eleusis\Portfolio\src\controller;
 
 use Eleusis\Portfolio\src\DAO\PostDAO;
+use Eleusis\Portfolio\src\DAO\CommentDAO;
 use Eleusis\Portfolio\src\DAO\userDAO;
 use Eleusis\Portfolio\src\model\View;
 use Eleusis\Portfolio\src\constraint\Validation;
@@ -14,6 +15,7 @@ use Eleusis\Portfolio\config\Session;
 abstract class Controller {
 
 	protected $postDAO;
+	protected $commentDAO;
 	protected $userDAO;
 	protected $view;
 	protected $validation;
@@ -23,8 +25,9 @@ abstract class Controller {
 	protected $session;
 
 	public function __construct() {
-		$this->postDAO = new PostDAO;
-		$this->userDAO = new userDAO;
+		$this->postDAO = new PostDAO();
+		$this->commentDAO = new CommentDAO();
+		$this->userDAO = new userDAO();
 		$this->view = new View();
 		$this->validation = new Validation();
 		$this->request = new Request();

@@ -31,6 +31,7 @@ class Routeur {
 			$action = NULL;
 		}
 		$postId = $this->request->getGet()->get('id');
+		$commentId = $this->request->getGet()->get('commentId');
 		$userId = $this->request->getGet()->get('userId');
 		$postUrl = $this->request->getPost();
 		try {
@@ -38,11 +39,13 @@ class Routeur {
 				if($action === 'posts') {
 					$this->frontController->postsPage();
 				} elseif($action === 'onePost') {
-					if(isset($postId) && $postId > 0) {
-						$this->frontController->onePostPage($postId);
-					} else {
-						$this->errorController->errorNotFound();
-					}
+					$this->frontController->onePostPage($postId);
+				} elseif($action === 'addComment') {
+					$this->frontController->addComment($postUrl, $postId);
+				} elseif($action === 'flagComment') {
+					$this->backController->flagComment($commentId);
+				} elseif($action === 'deleteComment') {
+					$this->backController->deleteComment($commentId);
 				} elseif ($action === 'administration') {
 					$this->backController->administration();
 				} elseif($action === 'addPost') {
@@ -51,6 +54,8 @@ class Routeur {
 					$this->backController->editPost($postUrl, $postId);
 				} elseif($action === 'deletePost') {
 					$this->backController->deletePost($postId);
+				} elseif($action === 'unflagComment') {
+					$this->backController->unflagComment($commentId);
 				} elseif($action === 'forumHome') {
 					$this->frontController->forumHome();
 				} elseif ($action === 'register') {
