@@ -7,6 +7,11 @@
 		</div>
 	</div>
 	<div class="row">
+		<div class="col-12 text-center">
+			<p id="compressedImg"></p>
+		</div>
+	</div>
+	<div class="row">
 		<div class="col-12 col-md-6">
 			<?php include('post_form.php'); ?>
 			<a href="index.php?action=administration">Retour à l'accueil</a>

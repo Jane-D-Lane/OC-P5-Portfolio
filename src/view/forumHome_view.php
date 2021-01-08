@@ -13,14 +13,10 @@
   <div class="row">
     <?php
     if($this->session->get('pseudo')) {
-      if($this->session->get('role') === 'admin') {
     ?>
     <div class="col-12 col-lg-6 d-flex justify-content-start">
       <a href="index.php?action=addTopic"><button type="button" class="btn btn-primary">Nouveau sujet</button></a>
     </div>
-    <?php 
-      }  
-    ?>
     <div class="col-12 d-flex justify-content-end">
       <a href="index.php?action=profile"><button type="button" class="btn btn-primary">Profil</button></a>
       <a href="index.php?action=logout"><button type="button" class="btn btn-primary">Deconnexion</button></a>

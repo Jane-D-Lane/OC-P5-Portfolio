@@ -23,13 +23,13 @@
         							</a>
       					</li>
       					<li class="nav-item">
-        					<a class="nav-link" href="index.php?action=posts">Articles</a>
+        					<a class="nav-link" href="index.php?action=posts&page=1">Articles</a>
       					</li>
       					<li class="nav-item">
         					<a class="nav-link" href="index.php?action=forumHome">Forum</a>
       					</li>
       					<li class="nav-item">
-        					<a class="nav-link" href="index.php?action=contact">Contact</a>
+        					<a class="nav-link" href="index.php?action=sendMail">Contact</a>
       					</li>
                 <?php if($this->session->get('role') === 'admin'){ ?> 
                 <li class="nav-item">
@@ -53,45 +53,9 @@
    	</div> 
     <?= $content ?>
     <footer class="page-footer container">
-   		<div class="container bg-dark text-center text-md-left pt-4">
-   			<div class="row">
-  				<div class="col-md-4">
-            <h5>Menu</h5>
-            <ul class="list-unstyled">
-              <li>
-                <a href="#">Link 1</a>
-              </li>
-              <li>
-                <a href="#">Link 2</a>
-              </li>
-            </ul>
-   				</div>
-          <div class="col-md-4">
-            <h5>Catégories</h5>
-            <ul class="list-unstyled">
-              <li>
-                <a href="#">Link 1</a>
-              </li>
-              <li>
-                <a href="#">Link 2</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <h5>Réseaux sociaux</h5>
-            <ul class="list-unstyled">
-              <li>
-                <a href="#">Link 1</a>
-              </li>
-              <li>
-                <a href="#">Link 2</a>
-              </li>
-            </ul>
-          </div>
-   			</div>
-   		</div>
-      <div class="footer-copyright bg-primary text-center py-2">© L.M.Eleusis Tous droits réservés</div>
+      <div class="footer-copyright bg-primary text-center py-2 text-light">© L.M.Eleusis Tous droits réservés</div>
     </footer>
+    <script type="text/javascript" src="public/site.js"></script>
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

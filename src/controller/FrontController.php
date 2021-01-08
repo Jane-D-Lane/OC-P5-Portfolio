@@ -14,8 +14,14 @@ class FrontController extends Controller {
 
 	// Affichage de la page des tous les articles 
 	public function postsPage() { 
-		$posts = $this->postDAO->getPosts();
-		return $this->view->render('posts_view',['posts' => $posts]);
+		$posts = $this->postDAO->getLimitPosts();
+		$pages = $this->postDAO->getPages();
+		$currentPage = $this->postDAO->getCurrentPage();
+		return $this->view->render('posts_view',[
+			'posts' => $posts,
+			'pages' => $pages,
+			'currentPage' =>$currentPage
+		]);
 	}
 
 	// Affichage d'un article 
@@ -40,7 +46,7 @@ class FrontController extends Controller {
 				$this->session->set('add_comment', 'Le nouveau commentaire a bien été posté.');
 				header('Location: index.php?action=onePost&id='.$postId);
 			} else {
-				$this->view->render('post_view.php', [
+				$this->view->render('post_view', [
 					'post' => $post,
 					'comments' => $comments,
 					'errors' => $errors,
@@ -104,9 +110,23 @@ class FrontController extends Controller {
 		return $this->view->render('login_view');
 	}
 
-	// Affichage de la page de contact 
-	public function formPage() {
-		return $this->view->render('contact_view');
+	// Envoyer un message à l'admin via le formulaire de contact
+	public function sendMail(Parameter $postUrl) {	
+		if($postUrl->get('submit')) {
+			$errors = $this->validation->validate($postUrl, 'Contact');
+			if(!$errors) {
+				$this->contact->sendMail($postUrl);
+				$this->session->set('send_mail', 'Le message a bien été envoyé.');
+				header('Location: index.php?action=sendMail');
+			} else {
+				return $this->view->render('contact_view', [
+					'postUrl' => $postUrl,
+					'errors' => $errors
+				]);
+			}
+		} else {
+			return $this->view->render('contact_view');
+		}
 	}
 
 }

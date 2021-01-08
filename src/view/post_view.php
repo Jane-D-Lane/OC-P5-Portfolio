@@ -9,22 +9,24 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-12 col-md-8 px-5">
-			<div>
-				<h3>
+		<div class="col-12 px-5">
+			<div class="card border-primary text-center">
+				<div class="card-header">
 					<?= htmlspecialchars($post->getTitle()) ?>
 					<em>le <?= $post->getCreationDate() ?></em>
-				</h3> 
-				<p><?= nl2br($post->getContent()) ?></p>
-				<?php
-				if($post->getImg()) {
-				?>
-				<div>
-					<img src="public/uploads/<?= $post->getImg() ?>" width="400px">
-				</div>			
-				<?php 
-				}
-				?>
+				</div>
+				<div class="card-body">	
+					<?php
+					if($post->getImg()) {
+					?>
+					<div class="card-img-top">
+						<img src="public/uploads/<?= $post->getImg() ?>" width="400px">
+					</div>
+					<?php 
+					}
+					?>
+					<p><?= nl2br($post->getContent()) ?></p>
+				</div>
 			</div>
 			<br>
 			<?php
@@ -41,6 +43,10 @@
 			<?php
 			}
 			?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12 px-5 text-center">
 			<div>
     			<h3>Ajouter un commentaire</h3>
 				<form action="index.php?action=addComment&amp;id=<?= $post->getId() ?>" method="post">

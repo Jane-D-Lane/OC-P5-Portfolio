@@ -22,7 +22,7 @@ class UserValidation extends Validation {
 	}
 
 	// Appel à la validation des titres, ajoute une erreur si rencontrée
-	public function checkField($name, $value) {
+	private function checkField($name, $value) {
 		if($name === 'pseudo') {
 			$error = $this->checkPseudo($name, $value);
 			$this->addError($name, $error);
@@ -42,7 +42,7 @@ class UserValidation extends Validation {
 		}
 	} 
 
-	// Validation du pseudo si non nul, min 2, max 255
+	// Validation du pseudo
 	private function checkPseudo($name, $value) {
 		if($this->constraint->notBlank($name, $value)) {
 			return $this->constraint->notBlank('pseudo', $value);
@@ -50,12 +50,12 @@ class UserValidation extends Validation {
 		if($this->constraint->minLenght($name, $value, 2)) {
 			return $this->constraint->minLenght('pseudo', $value, 2);
 		}
-		if($this->constraint->maxLenght($name, $value, 255)) {
-			return $this->constraint->maxLenght('pseudo', $value, 255);
+		if($this->constraint->maxLenght($name, $value, 100)) {
+			return $this->constraint->maxLenght('pseudo', $value, 100);
 		}
 	}
 
-	// Validation du password si non nul, min 2, max 255
+	// Validation du password 
 	private function checkPassword($name, $value) {
 		if($this->constraint->notBlank($name, $value)) {
 			return $this->constraint->notBlank('password', $value);
@@ -68,7 +68,7 @@ class UserValidation extends Validation {
 		}
 	}
 
-	// Validation de l'email si non nul, min 2, max 255
+	// Validation de l'email 
 	private function checkEmail($name, $value) {
 		if($this->constraint->notBlank($name, $value)) {
 			return $this->constraint->notBlank('email', $value);
@@ -76,8 +76,8 @@ class UserValidation extends Validation {
 		if($this->constraint->minLenght($name, $value, 2)) {
 			return $this->constraint->minLenght('email', $value, 2);
 		}
-		if($this->constraint->maxLenght($name, $value, 255)) {
-			return $this->constraint->maxLenght('email', $value, 255);
+		if($this->constraint->maxLenght($name, $value, 100)) {
+			return $this->constraint->maxLenght('email', $value, 100);
 		}
 	}
 }

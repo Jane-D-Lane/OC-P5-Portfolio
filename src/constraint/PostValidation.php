@@ -22,12 +22,9 @@ class PostValidation extends Validation {
 	}
 
 	// Appel à la validation des titres, ajoute une erreur si rencontrée
-	public function checkField($name, $value) {
+	private function checkField($name, $value) {
 		if($name === 'title') {
 			$error = $this->checkTitle($name, $value);
-			$this->addError($name, $error);
-		} elseif ($name === 'content') {
-			$error = $this->checkContent($name, $value);
 			$this->addError($name, $error);
 		}
 	}
@@ -39,7 +36,7 @@ class PostValidation extends Validation {
 		}
 	} 
 
-	// Validation d'un titre si non nul, min 2, max 255
+	// Validation d'un titre
 	private function checkTitle($name, $value) {
 		if($this->constraint->notBlank($name, $value)) {
 			return $this->constraint->notBlank('title', $value);
@@ -52,13 +49,4 @@ class PostValidation extends Validation {
 		}
 	}
 
-	// Validation d'un contenu si non nul, min 2
-	private function checkContent($name, $value) {
-		if($this->constraint->notBlank($name, $value)) {
-			return $this->constraint->notBlank('content', $value);
-		}
-		if($this->constraint->minLenght($name, $value, 2)) {
-			return $this->constraint->minLenght('content', $value, 2);
-		}
-	}
 }

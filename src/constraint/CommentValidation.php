@@ -46,8 +46,8 @@ class CommentValidation extends Validation {
 		if($this->constraint->minLenght($name, $value, 2)) {
 			return $this->constraint->minLenght('pseudo', $value, 2);
 		}
-		if($this->constraint->maxLenght($name, $value, 255)) {
-			return $this->constraint->maxLenght('pseudo', $value, 255);
+		if($this->constraint->maxLenght($name, $value, 100)) {
+			return $this->constraint->maxLenght('pseudo', $value, 100);
 		}
 	}
 

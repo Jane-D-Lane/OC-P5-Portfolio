@@ -6,6 +6,7 @@ use Eleusis\Portfolio\src\DAO\PostDAO;
 use Eleusis\Portfolio\src\DAO\CommentDAO;
 use Eleusis\Portfolio\src\DAO\userDAO;
 use Eleusis\Portfolio\src\model\View;
+use Eleusis\Portfolio\src\model\Contact;
 use Eleusis\Portfolio\src\constraint\Validation;
 use Eleusis\Portfolio\config\Request;
 use Eleusis\Portfolio\config\Parameter;
@@ -18,6 +19,7 @@ abstract class Controller {
 	protected $commentDAO;
 	protected $userDAO;
 	protected $view;
+	protected $contact;
 	protected $validation;
 	private $request;
 	protected $get;
@@ -29,6 +31,7 @@ abstract class Controller {
 		$this->commentDAO = new CommentDAO();
 		$this->userDAO = new userDAO();
 		$this->view = new View();
+		$this->contact = new Contact();
 		$this->validation = new Validation();
 		$this->request = new Request();
 		$this->get = $this->request->getGet();
