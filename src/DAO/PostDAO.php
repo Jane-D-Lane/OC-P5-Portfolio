@@ -5,9 +5,21 @@ namespace Eleusis\Portfolio\src\DAO;
 use Eleusis\Portfolio\src\model\File;
 use Eleusis\Portfolio\src\model\Post;
 use Eleusis\Portfolio\config\Parameter;
+use Eleusis\Portfolio\config\Request;
+use PDO;
 
 // Gestion des opérations effectuées sur les articles, effectue les requêtes directement 
 class PostDAO extends DAO {
+
+	private $pages;
+	private $currentPage;
+	private $request;
+	private $page;
+
+	public function __construct() {
+		$this->request = new Request();
+		$this->page = $this->request->getGet()->get('page');
+	}
 	
 	// Converti chaque champ de la table en propriété d'une instance de Post 
 	private function buildObject($row) {
@@ -31,6 +43,48 @@ class PostDAO extends DAO {
 		}
 		$result->closeCursor();
 		return $posts;
+	}
+
+	// Récupération d'un nombre d'articles par page
+	public function getLimitPosts() {
+		if(isset($this->page) && !empty($this->page)) {
+			$this->currentPage = strip_tags($this->page);
+		} else {
+			$this->currentPage = 1;
+		};
+
+		$sql = 'SELECT COUNT(*) AS nb_posts FROM posts';
+		$result = $this->createQuery($sql);
+		$posts = $result->fetch();
+		$postNb = $posts['nb_posts'];
+
+		$byPage = 6;
+		$this->pages = ceil($postNb/$byPage);
+		$first = ($this->currentPage * $byPage) - $byPage;
+
+		$sql = 'SELECT id, title, content, img, DATE_FORMAT(creationDate, \'%d/%m/%Y\') AS creationDateFr FROM posts ORDER BY id DESC LIMIT :first, :byPage';
+		$result = $this->getConnection()->prepare($sql);
+		$result->bindParam(':first', $first, PDO::PARAM_INT);
+		$result->bindParam(':byPage', $byPage, PDO::PARAM_INT);
+		$result->execute();
+
+		$posts = [];
+		foreach ($result as $row) {
+			$postId = $row['id'];
+			$posts[$postId] = $this->buildObject($row);
+		}
+		$result->closeCursor();
+		return $posts;
+	}
+
+	// Récupération du nombre de pages d'articles
+	public function getPages() {
+		return $this->pages;
+	}
+
+	// Récupération de la page actuelle
+	public function getCurrentPage() {
+		return $this->currentPage;
 	}
 
 	// Récupération d'un article suivant son id 

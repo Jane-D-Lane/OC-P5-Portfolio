@@ -72,8 +72,8 @@ class Routeur {
 				    $this->backController->deleteAccount();
 				} elseif ($action === 'deleteUser') {
 					$this->backController->deleteUser($userId);
-				} elseif($action === 'contact') {
-					$this->frontController->formPage();
+				} elseif($action === 'sendMail') {
+					$this->frontController->sendMail($postUrl);
 				} else {
 					$this->errorController->errorNotFound();
 				}

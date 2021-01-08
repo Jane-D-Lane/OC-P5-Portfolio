@@ -9,7 +9,7 @@ use Exception;
 abstract class DAO {
 
 	// Connexion à la base de données, données de configurations contenues dans le fichier dev.php 
- 	private function getConnection() {
+ 	protected function getConnection() {
 		try {
 			$connection = new \PDO(DB_HOST, DB_USER, DB_PASS);
 			$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
