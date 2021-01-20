@@ -18,7 +18,7 @@ class CommentDAO extends DAO {
 	} 
 
 	public function getCommentsFromPost($postId) {
-		$sql = 'SELECT id, user_id, pseudo, comment, flag, DATE_FORMAT(date_comment, \'%d/%m/%Y\') AS commentDateFr FROM comments WHERE post_id = ? ORDER BY date_comment DESC';
+		$sql = 'SELECT id, user_id, pseudo, comment, flag, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS commentDateFr FROM comments WHERE post_id = ? ORDER BY comment_date DESC';
 		$result = $this->createQuery($sql, [$postId]);
 		$comments = [];
 		foreach ($result as $row) {
@@ -30,7 +30,7 @@ class CommentDAO extends DAO {
 	}
 
 	public function addComment(Parameter $postUrl, $postId) {
-		$sql = 'INSERT INTO comments(user_id, post_id, pseudo, comment, flag, date_comment) VALUES (?, ?, ?, ?, 0, NOW())';
+		$sql = 'INSERT INTO comments(user_id, post_id, pseudo, comment, flag, comment_date) VALUES (?, ?, ?, ?, 0, NOW())';
 		$this->createQuery($sql, [$_SESSION['id'], $postId, $postUrl->get('pseudo'), $postUrl->get('comment')]);
 	}
 
@@ -40,7 +40,7 @@ class CommentDAO extends DAO {
 	} 
 
 	public function getFlagComments() {
-		$sql = 'SELECT id, pseudo, comment, flag, DATE_FORMAT(date_comment, \'%d/%m/%Y\') AS commentDateFr FROM comments WHERE flag = ? ORDER BY date_comment DESC';
+		$sql = 'SELECT id, pseudo, comment, flag, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS commentDateFr FROM comments WHERE flag = ? ORDER BY comment_date DESC';
 		$result = $this->createQuery($sql, [1]);
 		$comments = [];
 		foreach($result as $row) {

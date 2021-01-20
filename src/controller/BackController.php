@@ -9,7 +9,7 @@ class BackController extends Controller {
 
 	public function checkLoggedIn() {
 		if(!$this->session->get('pseudo')) {
-			$this->session->set('need_login', 'Vous devez vous connecter pour accéder à cette page.');
+			$this->session->set('need_login', '<p style=\'color:red;\'>Vous devez vous connecter pour accéder à cette page.</p>');
 			header('Location: index.php?action=login');
 		} else {
 			return true;
@@ -18,7 +18,7 @@ class BackController extends Controller {
 
 	public function checkAdmin() {
 		if(!($this->session->get('role') === 'admin')) {
-			$this->session->set('not_admin', 'Vous n\'avez pas le droit d\'accéder à cette page.');
+			$this->session->set('not_admin', '<p style=\'color:red\';>Vous n\'avez pas le droit d\'accéder à cette page.</p>');
 			header('Location: index.php');
 		} else {
 			return true;

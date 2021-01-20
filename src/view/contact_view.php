@@ -7,7 +7,7 @@
 			<?= $this->session->show('send_mail'); ?>
 		</div>
 	</div>
-	<div class="row my-5">
+	<div class="row my-4">
 		<div class="col-12 text-center">
 			<form method="post" action="index.php?action=sendMail">
 				<div class="form-group">

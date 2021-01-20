@@ -21,12 +21,12 @@ foreach($posts as $post) {
 					if ($post->getImg()) {
 					?>
 					<div>
-						<img class="card-img-top" src="public/uploads/<?= $post->getImg() ?>" max-width="100px">
+						<a href="index.php?action=onePost&amp;id=<?= $post->getId(); ?>"><img class="card-img-top" src="public/uploads/<?= $post->getImg() ?>" max-width="100px"></a>
 					</div><br>
 					<?php
 					}
 					?>			
-    				<h4 class="card-title text-center"><a href="index.php?action=onePost&amp;id=<?= $post->getId(); ?>"><?= htmlspecialchars($post->getTitle()) ?></h4>
+    				<h4 class="card-title text-center"><a href="index.php?action=onePost&amp;id=<?= $post->getId(); ?>"><?= htmlspecialchars($post->getTitle()) ?></a></h4>
   				</div>
 			</div>
 		</div>

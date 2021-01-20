@@ -52,7 +52,7 @@
       </div>
    	</div> 
     <?= $content ?>
-    <footer class="page-footer container">
+    <footer class="page-footer container" id="footer">
       <div class="footer-copyright bg-primary text-center py-2 text-light">© L.M.Eleusis Tous droits réservés</div>
     </footer>
     <script type="text/javascript" src="public/site.js"></script>

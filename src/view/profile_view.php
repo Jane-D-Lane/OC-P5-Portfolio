@@ -9,7 +9,8 @@
 	<div class="row">
 		<div class="col-12">
 			<h2><?= $this->session->get('pseudo'); ?></h2>
-			<p><?= $this->session->get('email'); ?></p>
+			<p id="mailProfile"><?= $this->session->get('email'); ?></p>
+			<p id="warning"></p>
 			<a href="index.php?action=updatePassword">Modifier mon mot de passe</a><br>
 			<a href="index.php?action=deleteAccount">Supprimer mon compte</a>
 			<br><br>

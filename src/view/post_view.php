@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-12 px-5">
+		<div class="col-12 col-md-7 px-5 mx-auto">
 			<div class="card border-primary text-center">
 				<div class="card-header">
 					<?= htmlspecialchars($post->getTitle()) ?>
@@ -19,8 +19,8 @@
 					<?php
 					if($post->getImg()) {
 					?>
-					<div class="card-img-top">
-						<img src="public/uploads/<?= $post->getImg() ?>" width="400px">
+					<div>
+						<img class="card-img-top" src="public/uploads/<?= $post->getImg() ?>" max-width="400px">
 					</div>
 					<?php 
 					}
@@ -47,8 +47,12 @@
 	</div>
 	<div class="row">
 		<div class="col-12 px-5 text-center">
+			
 			<div>
     			<h3>Ajouter un commentaire</h3>
+    			<?php
+				if(isset($_SESSION['pseudo'])) {
+				?>
 				<form action="index.php?action=addComment&amp;id=<?= $post->getId() ?>" method="post">
     				<label for="pseudo">
         				<input type="text" name="pseudo" id="pseudo" placeholder="Pseudo" value="<?= $_SESSION['pseudo']; ?>">
@@ -60,9 +64,27 @@
     				</label><br>
     				<input type="submit" value="Envoyer" name="submit" id="submit">
 				</form><br>
-				<h3>Commentaires</h3>
 				<?php
-				foreach ($comments as $comment) {
+				} else {
+				?>
+				<div class="card border-danger mx-auto my-4" style='width: 20rem;'>
+					<div class="card-title">
+						<p>Vous devez être membre pour ajouter un commentaire.</p>
+					</div>
+					<div class="card-text">
+						<p><a href="index.php?action=login">Pour se connecter</a></p>
+						<p><a href="index.php?action=register">Pour s'inscrire</a></p>
+					</div>
+				</div>
+				<?php
+				}
+				?>
+			</div>
+			<div>
+				<h3>Commentaires</h3><br>
+				<?php
+				if($comments) {
+					foreach ($comments as $comment) {
 				?>
 				<h4>
 					<?= htmlspecialchars($comment->getPseudo()) ?>
@@ -83,6 +105,11 @@
 				<p><a href="index.php?action=deleteComment&commentId=<?= $comment->getId(); ?>">Supprimer le commentaire</a></p>
         		<br>
         		<?php
+					}
+				} else {
+				?>
+				<p>Il n'y a pas encore de commentaires. Venez en ajouter !</p><br>
+				<?php
 				}
 				?>
 			</div>

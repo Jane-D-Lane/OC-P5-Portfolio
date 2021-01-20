@@ -33,6 +33,7 @@ class Routeur {
 		$postId = $this->request->getGet()->get('id');
 		$commentId = $this->request->getGet()->get('commentId');
 		$userId = $this->request->getGet()->get('userId');
+		$topicId = $this->request->getGet()->get('topicId');
 		$postUrl = $this->request->getPost();
 		try {
 			if(isset($action)) {
@@ -58,6 +59,12 @@ class Routeur {
 					$this->backController->unflagComment($commentId);
 				} elseif($action === 'forumHome') {
 					$this->frontController->forumHome();
+				} elseif($action === 'oneTopic') {
+					$this->frontController->oneTopic($topicId);
+				} elseif($action === 'addTopic') {
+					$this->frontController->addTopic($postUrl);
+				} elseif($action === 'addReply') {
+					$this->frontController->addReply($postUrl, $topicId);
 				} elseif ($action === 'register') {
 					$this->frontController->register($postUrl);
 				} elseif ($action === 'login') {

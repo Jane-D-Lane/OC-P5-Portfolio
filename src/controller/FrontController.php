@@ -67,8 +67,64 @@ class FrontController extends Controller {
 
 	// Affichage de la page principale du forum
 	public function forumHome() {
-		return $this->view->render('forumHome_view');
+		$topics = $this->topicDAO->getTopics();
+		return $this->view->render('forumHome_view', ['topics' => $topics]);
 	}
+
+	// Affichage d'un article 
+	public function oneTopic($topicId) {
+		$topic = $this->topicDAO->getTopic($topicId);
+		$replies = $this->replyDAO->getRepliesFromTopic($topicId);
+		return $this->view->render('topic_view', [
+			'topic' => $topic,
+			'replies' => $replies
+		]);
+	} 
+
+	// Insertion d'un sujet du forum dans la BDD
+	public function addTopic(Parameter $postUrl) {
+		if($postUrl->get('submit')) {
+			$errors = $this->validation->validate($postUrl, 'Topic');
+			if(!$errors) {
+				$this->topicDAO->addTopic($postUrl);
+				$this->session->set('forumHome_view', 'Un nouveau sujet a été posté.');
+				header('Location: index.php?action=forumHome');
+			} else {
+				$this->view->render('add_topic', [
+					'topics' => $topics,
+					'errors' => $errors,
+					'postUrl' => $postUrl
+				]);
+			}
+		} else {
+			$this->view->render('add_topic');
+		}
+	}
+
+	// Ajout d'une réponse à un sujet du forum 
+	public function addReply(Parameter $postUrl, $topicId) {
+		$topic = $this->topicDAO->getTopic($topicId);
+		$replies = $this->replyDAO->getRepliesFromTopic($topicId);
+
+		if($postUrl->get('submit')) {
+			$errors = $this->validation->validate($postUrl, 'Reply');
+			if(!$errors) {
+				$this->replyDAO->addReply($postUrl, $topicId);
+				$this->session->set('topic_view', 'Une nouvelle réponse a été postée.');
+				header('Location: index.php?action=oneTopic&topicId='.$topicId);
+			} else {
+				$this->view->render('topic_view', [
+					'topics' => $topics,
+					'replies' => $replies,
+					'errors' => $errors,
+					'postUrl' => $postUrl
+				]);
+			}
+		} else {
+			$this->view->render('topic_view');
+		}
+	}
+
 
 	// Gère l'inscription d'un nouveau membre
 	public function register(Parameter $postUrl) {

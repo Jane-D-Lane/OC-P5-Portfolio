@@ -45,12 +45,18 @@
     				</tr>
   				</thead>
   				<tbody>
+          <?php
+          foreach ($topics as $topic) {
+          ?>
    		 			<tr class="table-active">
-      					<th scope="row">Active</th>
+      					<th scope="row"><a href="index.php?action=oneTopic&amp;topicId=<?= $topic->getId(); ?>"><?= htmlspecialchars($topic->getTitle()); ?></a></th>
+      					<td><?= htmlspecialchars($topic->getPseudo()); ?></td>
       					<td>Column content</td>
-      					<td>Column content</td>
-      					<td>Column content</td>
+      					<td><?= htmlspecialchars($topic->getCreationDate()); ?></td>
     				</tr>
+          <?php
+          }
+          ?>
     			</tbody>
 			</table>
 		</div>
