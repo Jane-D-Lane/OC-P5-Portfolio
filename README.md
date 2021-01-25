@@ -1,11 +1,13 @@
 # Blog portfolio
-***
+
 Création d'un blog portfolio avec un forum.
+
 Projet réalisé dans le cadre de la formation Développeur Web Junior de OpenClassrooms (5e projet).
+
 Novembre 2020 - Janvier 2021
 
 ## Structure
-***
+
 * HTML, CSS, Bootstrap
 * JS (AJAX)
 * PHP, MySQL
