@@ -32,6 +32,9 @@
 	<div class="row">
 		<div class="col-12 px-5 pt-5">
     		<h3>Répondre</h3>
+    		<?php
+			if(isset($_SESSION['pseudo'])) {
+			?>
 			<form action="index.php?action=addReply&amp;topicId=<?= $topic->getId() ?>" method="post">
     			<label for="pseudo">
         			<input type="text" name="pseudo" id="pseudo" placeholder="Pseudo" value="<?= $_SESSION['pseudo']; ?>">
@@ -43,6 +46,21 @@
     			</label><br>
     			<input type="submit" value="Répondre" name="submit" id="submit">
 			</form><br>
+			<?php
+				} else {
+				?>
+				<div class="card border-danger mx-auto my-4 text-center" style='width: 20rem;'>
+					<div class="card-title">
+						<p>Vous devez être membre pour répondre au sujet.</p>
+					</div>
+					<div class="card-text">
+						<p><a href="index.php?action=login">Pour se connecter</a></p>
+						<p><a href="index.php?action=register">Pour s'inscrire</a></p>
+					</div>
+				</div>
+				<?php
+				}
+				?>
 		</div>
 	</div>
 </div>

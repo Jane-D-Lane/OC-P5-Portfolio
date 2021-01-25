@@ -24,7 +24,7 @@ class FrontController extends Controller {
 		]);
 	}
 
-	// Affichage d'un article 
+	// Affichage d'un article et ses commentaires
 	public function onePostPage($postId) {
 		$post = $this->postDAO->getPost($postId);
 		$comments = $this->commentDAO->getCommentsFromPost($postId);
@@ -34,7 +34,7 @@ class FrontController extends Controller {
 		]);
 	} 
 
-	//Si données d'ajout de commentaire reçues et validées, insertion dans la bdd
+	//Si validation des données, ajout d'un commentaire à un article
 	public function addComment(Parameter $postUrl, $postId) {
 		$post = $this->postDAO->getPost($postId);
 		$comments = $this->commentDAO->getCommentsFromPost($postId);
@@ -71,7 +71,7 @@ class FrontController extends Controller {
 		return $this->view->render('forumHome_view', ['topics' => $topics]);
 	}
 
-	// Affichage d'un article 
+	// Affichage d'un article du forum
 	public function oneTopic($topicId) {
 		$topic = $this->topicDAO->getTopic($topicId);
 		$replies = $this->replyDAO->getRepliesFromTopic($topicId);
@@ -81,7 +81,7 @@ class FrontController extends Controller {
 		]);
 	} 
 
-	// Insertion d'un sujet du forum dans la BDD
+	// Si validation des données, ajout d'un sujet au forum
 	public function addTopic(Parameter $postUrl) {
 		if($postUrl->get('submit')) {
 			$errors = $this->validation->validate($postUrl, 'Topic');
@@ -91,7 +91,6 @@ class FrontController extends Controller {
 				header('Location: index.php?action=forumHome');
 			} else {
 				$this->view->render('add_topic', [
-					'topics' => $topics,
 					'errors' => $errors,
 					'postUrl' => $postUrl
 				]);
@@ -101,7 +100,7 @@ class FrontController extends Controller {
 		}
 	}
 
-	// Ajout d'une réponse à un sujet du forum 
+	// Si validation des données, ajout d'une réponse à un sujet au forum 
 	public function addReply(Parameter $postUrl, $topicId) {
 		$topic = $this->topicDAO->getTopic($topicId);
 		$replies = $this->replyDAO->getRepliesFromTopic($topicId);
@@ -114,7 +113,7 @@ class FrontController extends Controller {
 				header('Location: index.php?action=oneTopic&topicId='.$topicId);
 			} else {
 				$this->view->render('topic_view', [
-					'topics' => $topics,
+					'topic' => $topic,
 					'replies' => $replies,
 					'errors' => $errors,
 					'postUrl' => $postUrl
@@ -126,7 +125,7 @@ class FrontController extends Controller {
 	}
 
 
-	// Gère l'inscription d'un nouveau membre
+	// Si validation des données, gère l'inscription d'un nouveau membre
 	public function register(Parameter $postUrl) {
 		if($postUrl->get('submit')) {
 			$errors = $this->validation->validate($postUrl, 'User');
@@ -147,7 +146,7 @@ class FrontController extends Controller {
 		return $this->view->render('register_view');
 	}
 
-	// Gère la connexion d'un membre
+	// Si validation des données, gère la connexion d'un membre
 	public function login(Parameter $postUrl) {
 		if($postUrl->get('submit')) {
 			$result = $this->userDAO->login($postUrl);
@@ -166,7 +165,7 @@ class FrontController extends Controller {
 		return $this->view->render('login_view');
 	}
 
-	// Envoyer un message à l'admin via le formulaire de contact
+	// Si validation des données, envoie d'un mail à l'admin
 	public function sendMail(Parameter $postUrl) {	
 		if($postUrl->get('submit')) {
 			$errors = $this->validation->validate($postUrl, 'Contact');

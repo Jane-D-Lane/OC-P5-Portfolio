@@ -27,7 +27,7 @@ abstract class Controller {
 	protected $validation;
 	private $request;
 	protected $get;
-	protected $Post;
+	protected $postUrl;
 	protected $session;
 
 	public function __construct() {
@@ -41,7 +41,7 @@ abstract class Controller {
 		$this->validation = new Validation();
 		$this->request = new Request();
 		$this->get = $this->request->getGet();
-		$this->Post = $this->request->getPost();
+		$this->postUrl = $this->request->getPost();
 		$this->session = $this->request->getSession();
 	}
 

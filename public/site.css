@@ -1,5 +1,17 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
 	background-color: #f7f4dc;
+	padding-bottom: 50px;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 

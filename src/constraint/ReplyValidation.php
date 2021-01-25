@@ -4,7 +4,7 @@ namespace Eleusis\Portfolio\src\constraint;
 
 use Eleusis\Portfolio\config\Parameter;
 
-class PostValidation extends Validation {
+class ReplyValidation extends Validation {
 
 	private $errors = [];
 	private $constraint;
@@ -26,26 +26,23 @@ class PostValidation extends Validation {
 		if($error) {
 			$this->errors += [$name =>$error];
 		}
-	}
+	} 
 
-	// Appel à la validation des titres, ajoute une erreur si rencontrée
+	// Appel à la validation de chaque champ, ajoute une erreur si rencontrée
 	private function checkField($name, $value) {
-		if($name === 'title') {
-			$error = $this->checkTitle($name, $value);
+		if($name === 'message') {
+			$error = $this->checkMessage($name, $value);
 			$this->addError($name, $error);
 		}
 	}
 
-	// Validation d'un titre
-	private function checkTitle($name, $value) {
+	// Validation du champs d'une réponse à un sujet
+	private function checkMessage($name, $value) {
 		if($this->constraint->notBlank($name, $value)) {
-			return $this->constraint->notBlank('title', $value);
+			return $this->constraint->notBlank('message', $value);
 		}
 		if($this->constraint->minLenght($name, $value, 2)) {
-			return $this->constraint->minLenght('title', $value, 2);
-		}
-		if($this->constraint->maxLenght($name, $value, 255)) {
-			return $this->constraint->maxLenght('title', $value, 255);
+			return $this->constraint->minLenght('message', $value, 2);
 		}
 	}
 
