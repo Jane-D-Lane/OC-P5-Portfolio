@@ -59,16 +59,20 @@ class FrontController extends Controller {
 	}
 
 	// Signaler un commentaire
-	public function flagComment($commentId) {
+	public function flagComment($commentId) {	
 		$this->commentDAO->flagComment($commentId);
 		$this->session->set('flag_comment', 'Le commentaire a été signalé.');
-		header('Location: index.php?action=postPage');
+		header('Location: index.php?action=posts');
 	}
 
 	// Affichage de la page principale du forum
 	public function forumHome() {
 		$topics = $this->topicDAO->getTopics();
-		return $this->view->render('forumHome_view', ['topics' => $topics]);
+		$replies = $this->replyDAO->getLastReply();
+		return $this->view->render('forumHome_view', [
+			'topics' => $topics,
+			'replies' => $replies
+		]);
 	}
 
 	// Affichage d'un article du forum

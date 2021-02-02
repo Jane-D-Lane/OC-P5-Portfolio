@@ -1,8 +1,8 @@
 <?php 
 
-//Constante de configuration
+// Appel la configuration
 require('config/dev.php');
-//Appel à l'autoloader
+// Appel à l'autoload
 require('vendor/autoload.php');
 
 session_start();

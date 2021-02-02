@@ -34,7 +34,9 @@ class PostDAO extends DAO {
 
 	// Renvoie le résultat de la requête de tous les articles 
 	public function getPosts() {
-		$sql = 'SELECT id, title, content, img, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creationDateFr FROM posts ORDER BY creation_date DESC';
+		$sql = 'SELECT id, title, content, img, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creationDateFr 
+				FROM posts 
+				ORDER BY creation_date DESC';
 		$result = $this->createQuery($sql);	
 		$posts = [];
 		foreach ($result as $row) {
@@ -53,7 +55,8 @@ class PostDAO extends DAO {
 			$this->currentPage = 1;
 		};
 
-		$sql = 'SELECT COUNT(*) AS nb_posts FROM posts';
+		$sql = 'SELECT COUNT(*) AS nb_posts 
+				FROM posts';
 		$result = $this->createQuery($sql);
 		$posts = $result->fetch();
 		$postNb = $posts['nb_posts'];
@@ -62,7 +65,10 @@ class PostDAO extends DAO {
 		$this->pages = ceil($postNb/$byPage);
 		$first = ($this->currentPage * $byPage) - $byPage;
 
-		$sql = 'SELECT id, title, content, img, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creationDateFr FROM posts ORDER BY id DESC LIMIT :first, :byPage';
+		$sql = 'SELECT id, title, content, img, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creationDateFr 
+				FROM posts 
+				ORDER BY id DESC 
+				LIMIT :first, :byPage';
 		$result = $this->getConnection()->prepare($sql);
 		$result->bindParam(':first', $first, PDO::PARAM_INT);
 		$result->bindParam(':byPage', $byPage, PDO::PARAM_INT);
@@ -89,7 +95,9 @@ class PostDAO extends DAO {
 
 	// Récupération d'un article suivant son id 
 	public function getPost($postId) {
-		$sql = 'SELECT id, title, content, img, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creationDateFr FROM posts WHERE id = ?';
+		$sql = 'SELECT id, title, content, img, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creationDateFr 
+				FROM posts 
+				WHERE id = ?';
 		$result = $this->createQuery($sql, [$postId]);
 		$post = $result->fetch();
 		$result->closeCursor();
@@ -98,16 +106,24 @@ class PostDAO extends DAO {
 
 	// Ajout d'un article dans la base de données 
 	public function addPost(Parameter $postUrl) {
-		$file = new File();
-		$file->getFile();
-
-		$sql = 'INSERT INTO posts (title, content, img, creation_date) VALUES (?, ?, ?, NOW())';
+		if($postUrl->get('file')) {
+			$file = new File();
+			$file->getFile();
+		}
+		$sql = 'INSERT INTO posts (title, content, img, creation_date) 
+				VALUES (?, ?, ?, NOW())';
 		$this->createQuery($sql, [$postUrl->get('title'), $postUrl->get('content'), $_FILES['img']['name']]);
 	}
 
 	// Modification d'un article dans la base de données
 	public function editPost(Parameter $postUrl, $postId) {
-		$sql = 'UPDATE posts SET title=:title, content=:content WHERE id=:postId';
+		if($postUrl->get('file')) {
+			$file = new File();
+			$file->getFile();
+		}
+		$sql = 'UPDATE posts 
+				SET title=:title, content=:content 
+				WHERE id=:postId';
 		$this->createQuery($sql, [
 			'title' => $postUrl->get('title'),
 			'content' => $postUrl->get('content'),
@@ -117,7 +133,8 @@ class PostDAO extends DAO {
 
 	// Suppression d'un article dans la base de données
 	public function deletePost($postId) {
-		$sql = 'DELETE FROM posts WHERE id = ?';
+		$sql = 'DELETE FROM posts 
+				WHERE id = ?';
 		$this->createQuery($sql, [$postId]);
 	}
 }

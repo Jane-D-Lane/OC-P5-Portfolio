@@ -15,7 +15,7 @@
 			<?= isset($errors['password']) ? $errors['password']: ''; ?>
 			<div class="form-group">
 				<label for="email">Email</label><br>
-				<input type="text" name="email" id="email">
+				<input type="email" name="email" id="email">
 			</div>	
 			<?= isset($errors['email']) ? $errors['email']: ''; ?>		
 			<input type="submit" class="btn btn-info" name="submit" id="submit" value="S'inscrire">

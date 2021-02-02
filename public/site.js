@@ -2,7 +2,6 @@ let mailProfile = document.getElementById('mailProfile').innerHTML;
 let warning = document.getElementById('warning');
 console.log(mailProfile);
 
-let domainMail = "gre";
 
 let request = new XMLHttpRequest();
 request.onreadystatechange = function() {
@@ -14,7 +13,7 @@ request.onreadystatechange = function() {
         }
     }
 };
-request.open("GET", "https://mailcheck.p.rapidapi.com/?domain=" + domainMail);
+request.open("GET", "https://mailcheck.p.rapidapi.com/?domain=" + mailProfile);
 request.setRequestHeader("x-rapidapi-key", "af5f99c370msh9bfb80b7fbbb8b4p13e172jsn847b1b58009c");
 request.setRequestHeader("x-rapidapi-host", "mailcheck.p.rapidapi.com");
 request.send();

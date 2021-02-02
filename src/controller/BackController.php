@@ -7,18 +7,20 @@ use Eleusis\Portfolio\config\Parameter;
 // Gestion des fonctionnalités de l'espace admin 
 class BackController extends Controller {
 
+	// Vérifie s'il y a une session d'ouverte
 	public function checkLoggedIn() {
 		if(!$this->session->get('pseudo')) {
-			$this->session->set('need_login', '<p style=\'color:red;\'>Vous devez vous connecter pour accéder à cette page.</p>');
+			$this->session->set('need_login', '<p style=\'color:red\'>Vous devez vous connecter pour accéder à cette page.</p>');
 			header('Location: index.php?action=login');
 		} else {
 			return true;
 		} 
 	}
 
+	// Vérifie si l'admin est connecté
 	public function checkAdmin() {
 		if(!($this->session->get('role') === 'admin')) {
-			$this->session->set('not_admin', '<p style=\'color:red\';>Vous n\'avez pas le droit d\'accéder à cette page.</p>');
+			$this->session->set('not_admin', '<p style=\'color:red\'>Vous n\'avez pas le droit d\'accéder à cette page.</p>');
 			header('Location: index.php');
 		} else {
 			return true;
@@ -96,9 +98,11 @@ class BackController extends Controller {
 
 	// Suppression d'un commentaire avec CommentDAO
 	public function deleteComment($commentId) {
-		$this->commentDAO->deleteComment($commentId);
-		$this->session->set('delete_comment', 'Le commentaire a bien été supprimé.');
-		header('Location: index.php?action=administration');
+		if($this->checkAdmin()) { 
+			$this->commentDAO->deleteComment($commentId);
+			$this->session->set('delete_comment', 'Le commentaire a bien été supprimé.');
+			header('Location: index.php?action=administration');
+		}
 	}
 
 	// Retire le flag d'un commentaire
@@ -106,6 +110,22 @@ class BackController extends Controller {
 		if($this->checkAdmin()) {
 			$this->commentDAO->unflagComment($commentId);
 			header('Location: index.php?action=administration');
+		}
+	}
+
+	// Suppression d'un sujet du forum
+	public function deleteTopic($topicId) {
+		if($this->checkAdmin()) {
+			$this->topicDAO->deleteTopic($topicId);
+			header('Location: index.php?action=forumHome');
+		}
+	}
+
+	// Suppression du contenu d'une réponse à un sujet, et message de suppression
+	public function deleteReply($replyId, $topicId) {
+		if($this->checkAdmin()) {
+			$this->replyDAO->deleteReply($replyId);
+			header('Location: index.php?action=oneTopic&topicId='.$topicId);
 		}
 	}
 

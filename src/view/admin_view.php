@@ -20,11 +20,11 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<td scope="col">Id</td>
-						<td scope="col">Titre</td>
-						<td scope="col">Contenu</td>
-						<td scope="col">Date</td>
-						<td scope="col">Actions</td>
+						<td>Id</td>
+						<td>Titre</td>
+						<td>Contenu</td>
+						<td>Date</td>
+						<td>Actions</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -32,8 +32,8 @@
 				foreach ($posts as $post) {
 				?>
 					<tr>
-						<th scope="row"><?= htmlspecialchars($post->getId()); ?></td>
-						<td><a href="index.php?action=onePost&amp;id=<?= $post->getId(); ?>"><?= htmlspecialchars($post->getTitle()); ?></a>
+						<td><?= htmlspecialchars($post->getId()); ?></td>
+						<td><a href="index.php?action=onePost&amp;id=<?= $post->getId(); ?>"><?= htmlspecialchars($post->getTitle()); ?></a></td>
 						<td><?= substr(htmlspecialchars($post->getContent()), 0, 150); ?></td>
 						<td>Créé le: <?= htmlspecialchars($post->getCreationDate()); ?></td>
 						<td>
@@ -57,11 +57,11 @@
 		<table class="table">
 			<thead>
     			<tr>
-       				<td scope="col">Id</td>
-        			<td scope="col">Pseudo</td>
-        			<td scope="col">Message</td>
-        			<td scope="col">Date</td>
-        			<td scope="col">Actions</td>
+       				<td>Id</td>
+        			<td>Pseudo</td>
+        			<td>Message</td>
+        			<td>Date</td>
+        			<td>Actions</td>
     			</tr>
     		</thead>
     		<tbody>
@@ -95,12 +95,12 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<td scope="col">Id</td>
-						<td scope="col">Pseudo</td>
-						<td scope="col">Rôle</td>
-						<td scope="col">Email</td>
-						<td scope="col">Date</td>
-						<td scope="col">Actions</td>
+						<td>Id</td>
+						<td>Pseudo</td>
+						<td>Rôle</td>
+						<td>Email</td>
+						<td>Date</td>
+						<td>Actions</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -108,15 +108,16 @@
 				foreach ($users as $user) {
 				?>
 					<tr>
-						<th scope="row"><?= htmlspecialchars($user->getId()); ?></td>
-						<td><?= htmlspecialchars($user->getPseudo()); ?></a>
-						<td><?= htmlspecialchars($user->getRole()); ?></a>
-						<td><?= htmlspecialchars($user->getEmail()); ?></a>
+						<td><?= htmlspecialchars($user->getId()); ?></td>
+						<td><?= htmlspecialchars($user->getPseudo()); ?></td>
+						<td><?= htmlspecialchars($user->getRole()); ?></td>
+						<td id="mailProfile"><?= htmlspecialchars($user->getEmail()); ?></td>
 						<td>Créé le: <?= htmlspecialchars($user->getInscriptionDate()); ?></td>
 						<td>
 							<?php
 							if($user->getRole()!= 'admin') {
 							?>
+							<p id="warning"></p>
 							<a href="index.php?action=deleteUser&amp;userId=<?= $user->getId(); ?>">Supprimer</a>
 							<?php
 							} else {

@@ -15,18 +15,18 @@
     if($this->session->get('pseudo')) {
     ?>
     <div class="col-12 col-lg-6 d-flex justify-content-start">
-      <a href="index.php?action=addTopic"><button type="button" class="btn btn-primary">Nouveau sujet</button></a>
+      <a class="btn btn-primary" href="index.php?action=addTopic" role="button">Nouveau sujet</a>
     </div>
     <div class="col-12 d-flex justify-content-end">
-      <a href="index.php?action=profile"><button type="button" class="btn btn-primary">Profil</button></a>
-      <a href="index.php?action=logout"><button type="button" class="btn btn-primary">Deconnexion</button></a>
+      <a class="btn btn-primary" href="index.php?action=profile" role="button">Profil</a>
+      <a class="btn btn-primary" href="index.php?action=logout" role="button">Deconnexion</a>
     </div>
     <?php
     } else {
     ?>
     <div class="col-12 d-flex justify-content-end">
-      <a href="index.php?action=register"><button type="button" class="btn btn-primary">Inscription</button></a>
-      <a href="index.php?action=login"><button type="button" class="btn btn-primary">Connexion</button></a>
+      <a class="btn btn-primary" href="index.php?action=register" role="button">Inscription</a>
+      <a class="btn btn-primary" href="index.php?action=login" role="button">Connexion</a>
     </div>
     <?php
     }
@@ -40,7 +40,7 @@
     				<tr>
       					<th scope="col">Sujet</th>
       					<th scope="col">Auteur</th>
-      					<th scope="col">Nb</th>
+      					<th scope="col">Nombre de messages</th>
       					<th scope="col">Dernier message</th>
     				</tr>
   				</thead>
@@ -51,8 +51,8 @@
    		 			<tr class="table-active">
       					<th scope="row"><a href="index.php?action=oneTopic&amp;topicId=<?= $topic->getId(); ?>"><?= htmlspecialchars($topic->getTitle()); ?></a></th>
       					<td><?= htmlspecialchars($topic->getPseudo()); ?></td>
-      					<td>Column content</td>
-      					<td><?= htmlspecialchars($topic->getCreationDate()); ?></td>
+      					<td><?= htmlspecialchars($topic->getNbMessage()); ?></td>
+      					<td><?= htmlspecialchars($topic->getLastReply()); ?></td>
     				</tr>
           <?php
           }

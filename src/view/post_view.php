@@ -20,7 +20,7 @@
 					if($post->getImg()) {
 					?>
 					<div>
-						<img class="card-img-top" src="public/uploads/<?= $post->getImg() ?>" max-width="400px">
+						<img id="onePostImg" class="card-img-top" src="public/uploads/<?= $post->getImg() ?>" alt="image de l'article">
 					</div>
 					<?php 
 					}
@@ -58,7 +58,7 @@
         				<input type="text" name="pseudo" id="pseudo" placeholder="Pseudo" value="<?= $_SESSION['pseudo']; ?>">
     				</label><br>
     				<?= isset($errors['pseudo']) ? $errors['pseudo'] : ''; ?>
-    				<label for="content">
+    				<label for="comment">
         				<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Votre commentaire"><?= isset($postUrl) ? htmlspecialchars($postUrl->get('comment')): ''; ?></textarea>
         				<?= isset($errors['comment']) ? $errors['comment'] : ''; ?>
     				</label><br>

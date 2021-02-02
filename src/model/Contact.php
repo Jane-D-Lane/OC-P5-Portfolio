@@ -4,6 +4,7 @@ namespace Eleusis\Portfolio\src\model;
 
 use Eleusis\Portfolio\config\Parameter;
 
+// Récupère les données du formulaire contact pour les envoyer par mail
 class Contact {
 
 	public function sendMail(Parameter $postUrl) {

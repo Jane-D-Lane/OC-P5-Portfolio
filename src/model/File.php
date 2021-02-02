@@ -1,11 +1,12 @@
 <?php
 
-namespace Eleusis\Portfolio\src\DAO;
+namespace Eleusis\Portfolio\src\model;
 
 use Eleusis\Portfolio\config\Parameter;
 
-class FileDAO extends DAO {
+class File {
 
+	// Récupère un fichier posté et l'envoie dans un dossier du site
 	private function getFile() {
 		$dataFile = pathinfo($_FILES['myfile']['name']);
 		$extendUpload = $dataFile['extension'];

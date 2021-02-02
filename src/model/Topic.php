@@ -2,6 +2,7 @@
 
 namespace Eleusis\Portfolio\src\model;
 
+// Représente un sujet du forum
 class Topic {
 
 	private $id;
@@ -9,6 +10,8 @@ class Topic {
 	private $title;
 	private $message;
 	private $creationDateFr;
+	private $lastReply; 
+	private $nbMessage;
 
 	public function getId() {
 		return $this->id;
@@ -44,7 +47,24 @@ class Topic {
 	public function getCreationDate() {
 		return $this->creationDateFr;
 	}
+
 	public function setCreationDate($creationDateFr) {
 		$this->creationDateFr = $creationDateFr;
 	}
+
+	public function getLastReply() {
+		return $this->lastReply;
+	}
+
+	public function setLastReply($lastReply) {
+		$this->lastReply = $lastReply;
+	}
+
+	public function getNbMessage() {
+		return $this->nbMessage;
+	}
+	
+	public function setNbMessage($nbMessage) {
+		$this->nbMessage = $nbMessage;
+	}	
 }

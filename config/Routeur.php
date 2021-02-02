@@ -34,6 +34,7 @@ class Routeur {
 		$commentId = $this->request->getGet()->get('commentId');
 		$userId = $this->request->getGet()->get('userId');
 		$topicId = $this->request->getGet()->get('topicId');
+		$replyId = $this->request->getGet()->get('replyId');
 		$postUrl = $this->request->getPost();
 		try {
 			if(isset($action)) {
@@ -44,7 +45,7 @@ class Routeur {
 				} elseif($action === 'addComment') {
 					$this->frontController->addComment($postUrl, $postId);
 				} elseif($action === 'flagComment') {
-					$this->backController->flagComment($commentId);
+					$this->frontController->flagComment($commentId);
 				} elseif($action === 'deleteComment') {
 					$this->backController->deleteComment($commentId);
 				} elseif ($action === 'administration') {
@@ -61,6 +62,10 @@ class Routeur {
 					$this->frontController->forumHome();
 				} elseif($action === 'oneTopic') {
 					$this->frontController->oneTopic($topicId);
+				} elseif($action === 'deleteTopic') {
+					$this->backController->deleteTopic($topicId);
+				} elseif($action === 'deleteReply') {
+					$this->backController->deleteReply($replyId, $topicId);
 				} elseif($action === 'addTopic') {
 					$this->frontController->addTopic($postUrl);
 				} elseif($action === 'addReply') {

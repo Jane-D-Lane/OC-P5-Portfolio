@@ -7,7 +7,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-12 col-md-6">
+		<div class="col-12 text-center">
 			<form action="index.php?action=addTopic" method="post">
     			<label for="pseudo">
         			<input type="text" name="pseudo" id="pseudo" placeholder="Pseudo" value="<?= $_SESSION['pseudo']; ?>">
@@ -16,7 +16,7 @@
     			<label for="title">
     				<input type="text" name="title" id='title' placeholder="title">
     			</label><br>
-    			<label for="content">
+    			<label for="message">
         			<textarea name="message" id="message" cols="30" rows="10" placeholder="Votre message"><?= isset($postUrl) ? htmlspecialchars($postUrl->get('message')): ''; ?></textarea>
         			<?= isset($errors['message']) ? $errors['message'] : ''; ?>
     			</label><br>

@@ -21,7 +21,7 @@ foreach($posts as $post) {
 					if ($post->getImg()) {
 					?>
 					<div>
-						<a href="index.php?action=onePost&amp;id=<?= $post->getId(); ?>"><img class="card-img-top" src="public/uploads/<?= $post->getImg() ?>" max-width="100px"></a>
+						<a href="index.php?action=onePost&amp;id=<?= $post->getId(); ?>"><img id="postImg" class="card-img-top" alt="image de l'article" src="public/uploads/<?= $post->getImg() ?>"></a>
 					</div><br>
 					<?php
 					}

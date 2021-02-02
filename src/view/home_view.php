@@ -1,10 +1,17 @@
 <?php $title = "Accueil"; ?>
 
+<div class="container">
+   <div class="row">
+      <div class="col-12 text-center">
+         <?= $this->session->show('not_admin'); ?>
+      </div>
+   </div>
+</div>
 <div class="container py-5">
    <div class="row">
       <div class="col-12 col-lg-6">
          <div id="imageFondu" class="text-center">
-            <img class="w-50" src="public/images/eleusisHome.jpg">
+            <img class="w-50" src="public/images/eleusisHome.jpg" alt="Eleusis">
          </div>
       </div>
       <div class="col-12 col-lg-6">

@@ -2,6 +2,7 @@
 
 namespace Eleusis\Portfolio\src\model;
 
+// Représente une réponse du forum
 class Reply {
 
 	private $id;
